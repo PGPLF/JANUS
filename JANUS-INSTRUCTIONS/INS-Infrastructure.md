@@ -782,62 +782,120 @@ if __name__ == "__main__":
 
 ## État d'Installation / Configuration
 
-### Session du 5 Janvier 2026 - 15:30 UTC
+### Machine: pg-mac01 (macOS Darwin 24.6.0, Apple Silicon arm64)
 
-#### Machine: pg-mac01 (macOS Darwin 24.6.0, Apple Silicon arm64)
+**Dernière mise à jour** : 5 Janvier 2026 - 21:45 UTC
 
-**✅ Installé et Fonctionnel** :
+**Configuration Matérielle** :
+| Composant | Spécification |
+|-----------|---------------|
+| Modèle | Mac (Apple Silicon) |
+| Processeur | Apple M-series arm64 |
+| OS | macOS Darwin 24.6.0 |
+| Architecture | arm64 |
+
+**✅ Infrastructure Complète et Opérationnelle** :
+
+*Environnement de Base* :
 - Python 3.13.0 (environnement virtuel: `/Users/pg-mac01/PythonProject/.venv/`)
 - pip 25.3
-- Jupyter Notebook 7.5.1
-- JupyterLab 4.5.1
-- IPython 9.9.0
-- nbconvert 7.16.6
-- Bibliothèques de base Jupyter:
-  - ipykernel 7.1.0
-  - ipywidgets 8.1.8
-  - jupyter-client 8.7.0
-  - jupyter-core 5.9.1
-  - jupyter-server 2.17.0
-  - matplotlib-inline 0.2.1
-  - nbformat 5.10.4
-  - pygments 2.19.2
 - Git (via Homebrew)
 - Homebrew: `/opt/homebrew/bin/brew`
 
-**⚠️ À Installer** :
-- **Packages scientifiques Python** :
-  ```bash
-  pip install numpy scipy matplotlib astropy emcee corner dynesty pandas seaborn photutils astroquery numba
-  ```
-- **LaTeX** (pdflatex, bibtex) :
-  - Nécessite privilèges administrateur
-  - Options recommandées:
-    - BasicTeX (~100 MB): `brew install --cask basictex` (avec sudo)
-    - MacTeX complet (~4 GB): https://www.tug.org/mactex/
-  - Après installation: `eval "$(/usr/libexec/path_helper)"`
+*Jupyter Ecosystem* :
+- JupyterLab 4.5.1
+- Notebook 7.5.1
+- IPython 9.9.0
+- ipykernel 7.1.0
+- ipywidgets 8.1.8
+- jupyter-client 8.7.0
+- jupyter-core 5.9.1
+- jupyter-server 2.17.0
+- nbconvert 7.16.6
+- matplotlib-inline 0.2.1
+- nbformat 5.10.4
+- pygments 2.19.2
 
-**Vérification** :
-```bash
-# Vérifier installations actuelles
-python3 --version      # ✅ 3.13.0
-jupyter --version      # ✅ 7.5.1
-pip --version          # ✅ 25.3
+*Packages Scientifiques Python* :
+- numpy 2.3.5
+- scipy 1.16.3
+- matplotlib 3.10.8
+- pandas 2.3.3
+- seaborn 0.13.2
+- h5py 3.15.1
+- astropy 7.2.0
+- astroquery 0.4.11
 
-# À vérifier après installation packages scientifiques
-python3 -c "import numpy; print(numpy.__version__)"
-python3 -c "import emcee; print(emcee.__version__)"
-python3 -c "import astropy; print(astropy.__version__)"
+*MCMC et Statistiques* :
+- emcee 3.1.6
+- corner 2.2.3
+- dynesty 3.0.0
+- ultranest 4.4.0
+- pymc 5.27.0
+- arviz 0.23.0
 
-# LaTeX
-pdflatex --version     # ❌ Non installé
-```
+*Performance et Tests* :
+- numba 0.63.1 (JIT compilation)
+- pytest 9.0.2
+- pytest-cov 7.0.0
+
+**Capacité de Calcul** :
+- ✅ MCMC standard (emcee) : Opérationnel
+- ✅ Nested sampling (dynesty, ultranest) : Opérationnel
+- ✅ Bayesian inference (pymc) : Opérationnel
+- ✅ Notebooks Jupyter interactifs : Opérationnel
+- ✅ Accès données JWST (astroquery) : Opérationnel
+- ✅ Accélération Numba : Opérationnel
+- ✅ Tests unitaires (pytest) : Opérationnel
+- ✅ Stockage HDF5 pour MCMC : Opérationnel
+- ❌ Compilation PDF LaTeX : Non disponible (nécessite sudo)
 
 **Remarques** :
-- Environnement Jupyter pleinement opérationnel
-- Installation packages scientifiques possible immédiatement (pas besoin sudo)
-- Conversion PDF depuis Jupyter nécessite LaTeX
+- Configuration conforme aux spécifications INS-Infrastructure.md
+- Implémentation MCMC avec checkpoints HDF5 selon INS-Statistiques.md
+- LaTeX non installé (nécessite privilèges administrateur)
 - Export HTML/Markdown fonctionne sans LaTeX
+- Alternative PDF: reportlab (déjà testé en session précédente)
+
+**Projets Actifs** :
+- ✅ **VAL-Galaxies_primordiales** - Phase 1 complétée (5 Janvier 2026)
+  - Infrastructure de calcul opérationnelle
+  - Modules cosmologie JANUS & ΛCDM
+  - Statistiques MCMC avec emcee
+  - Tests unitaires complets (42 tests)
+  - Documentation: SETUP.md, CHANGELOG.md, README.md
+
+**Historique des Modifications** :
+
+| Date | Heure UTC | Modification | Commit |
+|------|-----------|--------------|--------|
+| 2026-01-05 | 15:30 | État initial: Python 3.13.0, Jupyter, pip 25.3 | - |
+| 2026-01-05 | 21:00 | Installation packages scientifiques complets (numpy, scipy, matplotlib, astropy, etc.) | Phase 1 |
+| 2026-01-05 | 21:15 | Installation packages MCMC (emcee, corner, dynesty, ultranest, pymc, arviz) | Phase 1 |
+| 2026-01-05 | 21:30 | Installation tests et performance (pytest, pytest-cov, numba) | Phase 1 |
+| 2026-01-05 | 21:45 | Mise à jour INS-Infrastructure.md avec configuration complète | Phase 1 |
+
+**Vérification de l'Installation** :
+```bash
+# Environnement de base
+python3 --version                                     # ✅ 3.13.0
+pip --version                                         # ✅ 25.3
+jupyter --version                                     # ✅ 7.5.1
+
+# Packages scientifiques
+python3 -c "import numpy; print(numpy.__version__)"  # ✅ 2.3.5
+python3 -c "import scipy; print(scipy.__version__)"  # ✅ 1.16.3
+python3 -c "import matplotlib; print(matplotlib.__version__)" # ✅ 3.10.8
+python3 -c "import astropy; print(astropy.__version__)" # ✅ 7.2.0
+
+# MCMC
+python3 -c "import emcee; print(emcee.__version__)"  # ✅ 3.1.6
+python3 -c "import corner; print(corner.__version__)" # ✅ 2.2.3
+python3 -c "import dynesty; print(dynesty.__version__)" # ✅ 3.0.0
+
+# LaTeX
+pdflatex --version                                    # ❌ Non installé
+```
 
 ---
 

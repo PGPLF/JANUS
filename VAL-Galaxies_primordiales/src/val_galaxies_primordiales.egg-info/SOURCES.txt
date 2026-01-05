@@ -1,0 +1,15 @@
+setup.py
+src/cosmology/__init__.py
+src/cosmology/janus.py
+src/cosmology/lcdm.py
+src/plotting/__init__.py
+src/plotting/publication.py
+src/statistics/__init__.py
+src/statistics/fitting.py
+src/utils/__init__.py
+src/utils/constants.py
+src/val_galaxies_primordiales.egg-info/PKG-INFO
+src/val_galaxies_primordiales.egg-info/SOURCES.txt
+src/val_galaxies_primordiales.egg-info/dependency_links.txt
+src/val_galaxies_primordiales.egg-info/requires.txt
+src/val_galaxies_primordiales.egg-info/top_level.txt
