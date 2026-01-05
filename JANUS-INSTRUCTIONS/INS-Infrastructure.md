@@ -444,15 +444,37 @@ with open('sampler.pkl', 'rb') as f:
 
 Créer un fichier `requirements.txt` :
 ```text
-numpy>=1.24.0
+# Core scientifique
+numpy>=2.0.0
 scipy>=1.10.0
-matplotlib>=3.7.0
-astropy>=5.3.0
-emcee>=3.1.0
-corner>=2.2.0
 pandas>=2.0.0
+
+# Visualisation
+matplotlib>=3.8.0
+seaborn>=0.13.0
+corner>=2.2.0
+
+# Astronomie et cosmologie
+astropy>=7.0.0
+astroquery>=0.4.11
+photutils>=1.9.0
+
+# MCMC et statistiques bayésiennes
+emcee>=3.1.0
+dynesty>=2.1.0
+arviz>=0.15.0
+chainconsumer>=1.0.0
+
+# Performance
+numba>=0.57.0
+h5py>=3.9.0
+
+# Notebooks
 jupyter>=1.0.0
 jupyterlab>=4.0.0
+
+# Tests
+pytest>=7.0.0
 ```
 
 Installer :
@@ -821,7 +843,7 @@ pdflatex --version     # ❌ Non installé
 
 ### Machine: patrickguerin-imac (iMac M4 24")
 
-**Dernière mise à jour** : 5 Janvier 2026 - 20:15 UTC
+**Dernière mise à jour** : 5 Janvier 2026 - 21:00 UTC
 
 **Configuration Matérielle** :
 | Composant | Spécification |
@@ -899,6 +921,7 @@ pdflatex --version     # ❌ Non installé
 | 2026-01-05 | 19:45 | Ajout INS-Statistiques.md (bonnes pratiques calculs intensifs) | Commit `19ea2c1` |
 | 2026-01-05 | 20:00 | Ajout chainconsumer, statsmodels, psutil | Commit `903bc17` |
 | 2026-01-05 | 20:15 | Mise en place historique des modifications | Commit `d09b974` |
+| 2026-01-05 | 21:00 | Mise à jour requirements.txt avec versions minimales correctes | Commit courant |
 
 **Commandes de Réversibilité** :
 ```bash
