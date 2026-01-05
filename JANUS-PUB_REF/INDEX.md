@@ -21,12 +21,19 @@
    - arXiv: 2103.12845
    - **Fichier**: `Petit_2021_Schwarzschild_singularity.pdf`
 
+### 2025
+3. **Petit, J.-P.** (2025)
+   - "Rebuttal of Damour's criticism of the Janus model"
+   - Réponse aux critiques mathématiques de Thibault Damour
+   - **Fichier**: `Petit_2025_Rebuttal_Damour_Criticism.pdf`
+
 ### 2018
 4. **D'Agostini, G.; Petit, J.-P.** (June 2018)
    - "Constraints on Janus Cosmological model from recent observations of supernovae type Ia"
    - *Astrophysics and Space Science*, 363(7): 139
    - DOI: 10.1007/s10509-018-3365-3
    - **12 confirmations observationnelles du modèle**
+   - **Fichier**: `DAgostini_Petit_2018_SNIa_AstrophysSpaceSci.pdf`
 
 5. **Debergh, N.; Petit, J.-P.; D'Agostini, G.** (November 2018)
    - "On evidence for negative energies and masses in the Dirac equation through a unitary time-reversal operator"

@@ -58,17 +58,39 @@ Tous les fichiers PDF ont été vérifiés et sont valides:
 
 ---
 
+## 2025-01-05 - Intégration des publications de JANUS-Z
+
+### Découverte du dossier JANUS-Z existant
+- Le dossier `/Desktop/JANUS-Z/` contient déjà un projet JANUS plus avancé
+- Contient: scripts, données, résultats, analyses
+- Sous-dossier `publications_ext/` avec des publications supplémentaires
+
+### Publications récupérées de JANUS-Z
+
+| Fichier | Taille | Source | Statut |
+|---------|--------|--------|--------|
+| DAgostini_Petit_2018_SNIa_AstrophysSpaceSci.pdf | 1.2 MB | JANUS-Z | OK |
+| Petit_2025_Rebuttal_Damour_Criticism.pdf | 12.2 MB | JANUS-Z | OK |
+
+**Articles importants ajoutés:**
+1. **D'Agostini & Petit (2018)** - "Constraints on Janus Cosmological model from recent observations of supernovae type Ia" - Astrophysics & Space Science 363:139 - **12 confirmations observationnelles**
+2. **Petit (2025)** - "Rebuttal of Damour's criticism of the Janus model" - Réponse aux critiques mathématiques de T. Damour
+
+**Total publications: 13 PDFs + 1 HTML**
+
+---
+
 ### Publications à rechercher (TODO)
 
 #### Publications de référence manquantes:
-- [ ] D'Agostini & Petit (2018) - Astrophysics & Space Science 363:139 (Supernovae Ia)
+- [x] ~~D'Agostini & Petit (2018) - Astrophysics & Space Science 363:139 (Supernovae Ia)~~ TROUVÉ
 - [ ] Petit & D'Agostini (2015) - Astrophysics & Space Science 357:67 (Lagrangian)
 - [ ] Petit & D'Agostini (2015) - Modern Physics Letters A 30(9) (Schwarzschild)
 - [ ] Petit (1977) - Comptes rendus Académie des Sciences (article original)
 - [ ] Petit & Zejli (2024) - Reviews in Mathematical Physics (groupes symplectiques)
 
 #### Publications critiques à rechercher:
-- [ ] Critique mathématique de Thibault Damour (2022)
+- [x] ~~Critique mathématique de Thibault Damour (2022)~~ RÉPONSE TROUVÉE
 - [ ] Article de Sabine Hossenfelder (2008) sur les modèles bimétriques
 - [ ] Autres critiques académiques publiées
 
