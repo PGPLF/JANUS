@@ -819,9 +819,9 @@ pdflatex --version     # ❌ Non installé
 
 ---
 
-### Session du 5 Janvier 2026 - 19:00 UTC
+### Machine: patrickguerin-imac (iMac M4 24")
 
-#### Machine: patrickguerin-imac (iMac M4 24")
+**Dernière mise à jour** : 5 Janvier 2026 - 20:15 UTC
 
 **Configuration Matérielle** :
 | Composant | Spécification |
@@ -889,6 +889,28 @@ pdflatex --version     # ❌ Non installé
 - 24 GB RAM suffisant pour la plupart des analyses cosmologiques
 - Puce M4 offre excellentes performances mono/multi-thread
 - Pas de GPU dédié (utilisation CPU pour calculs)
+
+**Historique des Modifications** :
+
+| Date | Heure UTC | Modification | Réversibilité |
+|------|-----------|--------------|---------------|
+| 2026-01-05 | 19:00 | Installation initiale: Python, Jupyter, packages scientifiques de base | Commit `3aa4199` |
+| 2026-01-05 | 19:30 | Ajout packages MCMC: emcee, corner, dynesty, arviz | Commit `19ea2c1` |
+| 2026-01-05 | 19:45 | Ajout INS-Statistiques.md (bonnes pratiques calculs intensifs) | Commit `19ea2c1` |
+| 2026-01-05 | 20:00 | Ajout chainconsumer, statsmodels, psutil | Commit `903bc17` |
+| 2026-01-05 | 20:15 | Mise en place historique des modifications | Commit `d1c1ff7` |
+
+**Commandes de Réversibilité** :
+```bash
+# Voir l'état à un commit spécifique
+git show <commit_hash>:JANUS-INSTRUCTIONS/INS-Infrastructure.md
+
+# Revenir à un état précédent (créer une branche)
+git checkout <commit_hash> -- JANUS-INSTRUCTIONS/INS-Infrastructure.md
+
+# Lister tous les commits de ce fichier
+git log --oneline JANUS-INSTRUCTIONS/INS-Infrastructure.md
+```
 
 ---
 
