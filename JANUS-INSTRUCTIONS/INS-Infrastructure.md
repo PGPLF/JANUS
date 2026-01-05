@@ -819,6 +819,74 @@ pdflatex --version     # ❌ Non installé
 
 ---
 
+### Session du 5 Janvier 2026 - 19:00 UTC
+
+#### Machine: patrickguerin-imac (iMac M4 24")
+
+**Configuration Matérielle** :
+| Composant | Spécification |
+|-----------|---------------|
+| Modèle | iMac (Mac16,3) |
+| Processeur | Apple M4 (10 cœurs: 4 performance + 6 efficiency) |
+| Mémoire | 24 GB RAM unifié |
+| Stockage | 228 GB SSD (75 GB disponibles) |
+| OS | macOS Darwin 24.5.0 |
+| Architecture | Apple Silicon arm64 |
+
+**✅ Infrastructure Complète et Opérationnelle** :
+
+*Environnement de Base* :
+- Python 3.13.5
+- pip 25.1.1
+- Git 2.50.1
+- Homebrew 5.0.8
+- LaTeX (TeX Live 2025) - pdflatex disponible
+
+*Jupyter Ecosystem* :
+- JupyterLab 4.5.1
+- Notebook 7.5.1
+- IPython 9.9.0
+- ipykernel 7.1.0
+- ipywidgets 8.1.8
+- nbconvert 7.16.6
+
+*Packages Scientifiques Python* :
+- numpy 2.3.5
+- scipy 1.16.3
+- matplotlib 3.10.8
+- pandas 2.3.3
+- seaborn 0.13.2
+- astropy 7.2.0
+- astroquery 0.4.11
+- photutils 2.3.0
+
+*MCMC et Statistiques* :
+- emcee 3.1.6
+- corner 2.2.3
+- dynesty 3.0.0
+- arviz 0.23.0
+
+*Performance et Tests* :
+- numba 0.63.1 (JIT compilation)
+- pytest 9.0.2
+- h5py 3.15.1
+
+**Capacité de Calcul** :
+- ✅ MCMC standard (emcee) : Opérationnel
+- ✅ Nested sampling (dynesty) : Opérationnel
+- ✅ Compilation PDF LaTeX : Opérationnel
+- ✅ Notebooks Jupyter interactifs : Opérationnel
+- ✅ Accès données JWST (astroquery) : Opérationnel
+- ✅ Accélération Numba : Opérationnel
+
+**Remarques** :
+- Machine configurée pour analyses MCMC de complexité moyenne
+- 24 GB RAM suffisant pour la plupart des analyses cosmologiques
+- Puce M4 offre excellentes performances mono/multi-thread
+- Pas de GPU dédié (utilisation CPU pour calculs)
+
+---
+
 ### Instructions pour Nouvelles Machines
 
 Lors de l'utilisation sur une nouvelle machine, documenter ici:
