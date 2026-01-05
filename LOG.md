@@ -105,4 +105,40 @@ Tous les fichiers PDF ont été vérifiés et sont valides:
 
 ---
 
+## 2025-01-05 - Analyse des publications V1-V13
+
+### Versions analysées
+
+| Version | Fichier | Pages | Statut |
+|---------|---------|-------|--------|
+| V1 | janus_v1_first_results.pdf | 9 | Analysé |
+| V2 | janus_v2_correct_physics.pdf | 5 | Analysé |
+| V6 | JANUS_v6_rigorous.pdf | 4 | Analysé |
+| V9 | janus_v9_population_statistics.pdf | 4 | Analysé |
+| V13 | janus_v13_final_consolidated.pdf | 7 | Analysé |
+
+**Note**: V3-V5, V7-V8, V10-V12 non disponibles en PDF.
+
+### Erreurs critiques détectées
+
+| Version | Erreur | Gravité |
+|---------|--------|---------|
+| V6 | Symboles ■ corrompus (encodage) | CRITIQUE |
+| V9 | Références "??" non résolues | CRITIQUE |
+| V1 | Références bibliographiques erronées | MAJEURE |
+| V13 | Aucune figure | MAJEURE |
+
+### Document de spécifications créé
+
+**Fichier**: `JANUS-Z/PUBLICATION_STANDARDS.md`
+
+Règles de vérification de forme avant génération PDF:
+- Structure obligatoire (sections, annexes)
+- Uniformité linguistique (anglais)
+- Format références bibliographiques (AAS style)
+- Équations et symboles JANUS
+- Checklist rapide (10 points)
+
+---
+
 *Dernière mise à jour: 2025-01-05*
