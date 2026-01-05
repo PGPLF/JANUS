@@ -865,11 +865,14 @@ pdflatex --version     # ❌ Non installé
 - corner 2.2.3
 - dynesty 3.0.0
 - arviz 0.23.0
+- chainconsumer 1.3.0 (visualisation avancée des chaînes)
+- statsmodels 0.14.6 (modèles statistiques)
 
 *Performance et Tests* :
 - numba 0.63.1 (JIT compilation)
 - pytest 9.0.2
 - h5py 3.15.1
+- psutil 7.2.1 (monitoring système/mémoire)
 
 **Capacité de Calcul** :
 - ✅ MCMC standard (emcee) : Opérationnel
@@ -878,6 +881,8 @@ pdflatex --version     # ❌ Non installé
 - ✅ Notebooks Jupyter interactifs : Opérationnel
 - ✅ Accès données JWST (astroquery) : Opérationnel
 - ✅ Accélération Numba : Opérationnel
+- ✅ Visualisation chaînes (chainconsumer) : Opérationnel
+- ✅ Monitoring mémoire (psutil) : Opérationnel
 
 **Remarques** :
 - Machine configurée pour analyses MCMC de complexité moyenne
