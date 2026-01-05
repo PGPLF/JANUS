@@ -921,7 +921,7 @@ pdflatex --version     # ❌ Non installé
 | 2026-01-05 | 19:45 | Ajout INS-Statistiques.md (bonnes pratiques calculs intensifs) | Commit `19ea2c1` |
 | 2026-01-05 | 20:00 | Ajout chainconsumer, statsmodels, psutil | Commit `903bc17` |
 | 2026-01-05 | 20:15 | Mise en place historique des modifications | Commit `d09b974` |
-| 2026-01-05 | 21:00 | Mise à jour requirements.txt avec versions minimales correctes | Commit courant |
+| 2026-01-05 | 21:00 | Mise à jour requirements.txt avec versions minimales correctes | Commit `ffd2503` |
 
 **Commandes de Réversibilité** :
 ```bash
