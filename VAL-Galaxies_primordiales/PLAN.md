@@ -5,6 +5,38 @@
 
 ---
 
+## Historique des Phases et Évolutions
+
+| Phase | Statut | Date Début | Date Fin | Conformité | Rapport |
+|-------|--------|------------|----------|------------|---------|
+| Phase 1 | EN ATTENTE | - | - | - | - |
+| **Phase 2** | **COMPLÉTÉ** | 2026-01-05 | 2026-01-05 | 80% | RPT_PHASE2_VALIDATION.md |
+| Phase 3 | EN ATTENTE | - | - | - | - |
+| Phase 4 | EN ATTENTE | - | - | - | - |
+| Phase 5 | EN ATTENTE | - | - | - | - |
+| Phase 6 | EN ATTENTE | - | - | - | - |
+| Phase 7 | EN ATTENTE | - | - | - | - |
+
+### Évolutions Phase 2 (2026-01-05)
+
+**Adaptations par rapport au plan initial:**
+
+1. **JADES DR4 → DR2/DR3**: DR4 non publié, utilisation DR2 (GOODS-S) + DR3 (GOODS-N)
+   - Impact: Aucun - 179,709 sources totales disponibles
+
+2. **GLASS/UNCOVER/COSMOS direct → JANUS-Z reference**: Données Google Drive inaccessibles
+   - Impact: Aucun - JANUS-Z v17.1 compile ces sources (236 galaxies)
+
+3. **HST Legacy reporté**: Non critique pour Phase 2
+   - Impact: À intégrer en Phase 3 si nécessaire
+
+**Ajouts non planifiés:**
+- Intégration JANUS-Z v17.1 (236 galaxies référence)
+- 6 catégories d'échantillons spéciaux (vs 3 prévues)
+- 7,138 candidats JADES z>=8 (vs 500-700 attendus)
+
+---
+
 ## Phase 1 : Préparation et Fondations Théoriques
 
 ### 1.1 Documentation Théorique

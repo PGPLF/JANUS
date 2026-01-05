@@ -1,0 +1,5 @@
+ID,z,z_err,z_type,log_Mstar,sigma_Mstar,log_SFR,metallicity_12OH,has_AGN,is_dusty,protocluster,sigma_v,Survey,Reference,log_Mvir
+EXCELS-z8.27,8.271,0.008,spec,8.45,0.12,0.85,6.9,0,0,field,-1,EXCELS,Cullen+2025,-1.0
+EXCELS-z7.5a,7.48,0.02,spec,8.92,0.14,1.15,7.5,0,0,field,-1,EXCELS,Carnall+2025,-1.0
+EXCELS-z7.5b,7.52,0.03,spec,8.78,0.16,1.05,7.4,0,0,field,-1,EXCELS,Carnall+2025,-1.0
+EXCELS-z6.8,6.82,0.02,spec,9.05,0.13,1.2,7.8,0,0,field,-1,EXCELS,Carnall+2025,-1.0

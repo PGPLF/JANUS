@@ -1,0 +1,23 @@
+SPECIAL GALAXY SAMPLES - Phase 2 Semaine 4
+==================================================
+
+Source: JANUS-Z reference catalog v17.1
+Total galaxies: 236
+
+EXTRACTED SAMPLES:
+--------------------------------------------------
+1. EXCELS (metallicity):       4 galaxies
+2. A3COSMOS (dusty):          24 galaxies
+3. Proto-cluster members:     26 galaxies
+4. AGN hosts:                  2 galaxies
+5. Ultra high-z (z_spec>12):  17 galaxies
+6. 'Impossible' galaxies:      2 galaxies
+--------------------------------------------------
+
+FILES CREATED:
+- excels_metallicity_sample.csv
+- a3cosmos_dusty_sample.csv
+- protocluster_members.csv
+- agn_hosts.csv
+- ultra_highz_zspec_gt12.csv
+- impossible_galaxies.csv

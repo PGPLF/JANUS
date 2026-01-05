@@ -1,0 +1,3 @@
+ID,z,z_err,z_type,log_Mstar,sigma_Mstar,log_SFR,metallicity_12OH,has_AGN,is_dusty,protocluster,sigma_v,Survey,Reference,log_Mvir
+AC-2168,6.631,0.005,spec,10.57,0.1,2.39,7.5,0,1,field,-1,A3COSMOS,arXiv:2511.08672(2025),-1.0
+JWST-Impossible-z12,12.15,0.25,phot,9.02,0.3,1.15,6.8,0,0,field,-1,JWST-Press,GoodMenProject-Jan2026,-1.0

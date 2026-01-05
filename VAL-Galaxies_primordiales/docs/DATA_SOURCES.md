@@ -1,7 +1,7 @@
 # Sources de Données - VAL-Galaxies_primordiales
 
 **Date de création**: 5 Janvier 2026
-**Dernière mise à jour**: 5 Janvier 2026
+**Dernière mise à jour**: 5 Janvier 2026 22:20 (Post-Phase 2)
 
 ---
 
@@ -15,8 +15,9 @@
 | **DOI** | 10.1038/s41586-023-05786-2 |
 | **Source données** | github.com/ivolabbe/red-massive-candidates |
 | **Fichier** | sample_revision3_2207.12446.ecsv |
-| **Date téléchargement** | 5 Jan 2026 |
+| **Date téléchargement** | 5 Jan 2026 20:30 |
 | **N sources** | 13 (6 massives sélectionnées) |
+| **Status** | ✅ Complet |
 
 **Fichiers locaux**:
 ```
@@ -28,22 +29,35 @@ data/reference/
 
 ---
 
-## 2. Catalogues JWST (à télécharger)
+## 2. Catalogues JWST
 
 ### 2.1 JADES DR2/DR3
 | Attribut | Valeur |
 |----------|--------|
 | **URL** | archive.stsci.edu/hlsp/jades |
 | **Status** | ✅ Téléchargé (S2) |
-| **Fichiers** | GOODS-S (642 MB), GOODS-N (780 MB) |
+| **Date** | 2026-01-05 21:00 |
+| **Fichiers** | GOODS-S DR2 (642 MB), GOODS-N DR3 (780 MB) |
 | **N sources** | 179,709 totales |
-| **N z>8** | **7,138 candidats** |
+| **N z>=8** | **7,138 candidats extraits** |
 
-### 2.2 CEERS DR0.7
+**Fichiers locaux**:
+```
+data/jwst/raw/jades/
+├── jades_goods-s_photometry_v2.0.fits  # 94,000 sources
+└── jades_goods-n_photometry_v1.0.fits  # 85,709 sources
+
+data/jwst/processed/
+├── jades_highz_z8.fits                  # 7,138 z>=8
+└── jades_highz_z8.csv                   # Format CSV
+```
+
+### 2.2 CEERS NIRSpec DR0.7
 | Attribut | Valeur |
 |----------|--------|
 | **URL** | web.corral.tacc.utexas.edu/ceersdata/DR07 |
 | **Status** | ✅ Téléchargé (S2) |
+| **Date** | 2026-01-05 21:00 |
 | **Fichier** | ceers_nirspec_master_dr0.7.csv (145 KB) |
 | **Note** | Master spectro catalog |
 
@@ -51,99 +65,159 @@ data/reference/
 | Attribut | Valeur |
 |----------|--------|
 | **URL** | glass.astro.ucla.edu |
-| **Status** | ⬜ À télécharger (S2) |
-| **N estimé** | 100-150 z > 8 |
+| **Status** | ✅ Via JANUS-Z reference |
+| **Date** | 2026-01-05 21:30 |
+| **N inclus** | Intégré dans JANUS-Z (236 gal.) |
 
 ### 2.4 UNCOVER DR4
 | Attribut | Valeur |
 |----------|--------|
 | **URL** | jwst-uncover.github.io/DR4.html |
-| **Status** | ⬜ À télécharger (S3) |
-| **N estimé** | 150-200 z > 8 |
+| **Status** | ✅ Via JANUS-Z reference |
+| **Date** | 2026-01-05 21:30 |
+| **N inclus** | Intégré dans JANUS-Z (236 gal.) |
 
 ### 2.5 COSMOS-Web
 | Attribut | Valeur |
 |----------|--------|
 | **URL** | cosmos.astro.caltech.edu |
-| **Status** | ⬜ À télécharger (S3) |
-| **N estimé** | 300-500 z > 8 |
+| **Status** | ⚠️ Via JANUS-Z (COSMOS2025 non publié) |
+| **Date** | 2026-01-05 21:30 |
+| **N inclus** | Partiel via JANUS-Z |
 
 ### 2.6 EXCELS
 | Attribut | Valeur |
 |----------|--------|
 | **Spécialité** | Métallicité haute-z |
-| **Status** | ⬜ À télécharger (S4) |
-| **N estimé** | 50-100 z > 8 |
+| **Status** | ✅ Via JANUS-Z reference |
+| **Date** | 2026-01-05 21:45 |
+| **N inclus** | 4 galaxies (metallicity_12OH mesuré) |
+
+**Fichier**: `data/jwst/special/excels_metallicity_sample.csv`
 
 ### 2.7 A3COSMOS
 | Attribut | Valeur |
 |----------|--------|
 | **arXiv** | 2511.08672 |
 | **Spécialité** | Galaxies NIRCam-dark |
-| **Status** | ⬜ À télécharger (S4) |
-| **N estimé** | 30-50 z > 6 |
+| **Status** | ✅ Via JANUS-Z reference |
+| **Date** | 2026-01-05 21:45 |
+| **N inclus** | 24 galaxies dusty |
+
+**Fichier**: `data/jwst/special/a3cosmos_dusty_sample.csv`
 
 ---
 
-## 3. Découvertes Exceptionnelles (à télécharger)
+## 3. JANUS-Z Reference Catalog
 
-### 3.1 AC-2168 ("Impossible Galaxy")
+### JANUS-Z v17.1 (Source principale Phase 2)
 | Attribut | Valeur |
 |----------|--------|
-| **z** | 12.15 |
-| **Date découverte** | 3 Jan 2026 |
-| **Status** | ⬜ À télécharger (S5) |
-| **Priorité** | CRITIQUE |
+| **Source** | Projet JANUS-Z |
+| **Version** | v17.1 |
+| **Status** | ✅ Intégré |
+| **Date** | 2026-01-05 21:30 |
+| **N total** | 236 galaxies |
+| **z range** | 6.50 - 14.52 |
+| **z_spec** | 93 (39%) |
+| **z_phot** | 143 (61%) |
 
-### 3.2 GHZ9 (AGN haute-z)
-| Attribut | Valeur |
-|----------|--------|
-| **z** | 10.38 |
-| **Status** | ⬜ À documenter (S5) |
+**Surveys inclus**: JADES, GLASS, UNCOVER, CEERS, EXCELS, A3COSMOS
 
-### 3.3 JADES-GS-z14-0
-| Attribut | Valeur |
-|----------|--------|
-| **z** | 14.32 (record) |
-| **Status** | ⬜ Inclus dans JADES DR4 |
+**Fichier**: `data/jwst/processed/janus_z_reference_catalog.csv`
 
 ---
 
-## 4. Proto-clusters (à compiler)
+## 4. Découvertes Exceptionnelles
 
-| Proto-cluster | z_spec | Status |
-|---------------|--------|--------|
-| A2744-z7p9 | 7.88 | ⬜ S5 |
-| JADES-GS-z7-01 | 7.9 | ⬜ S5 |
-| CEERS-z8-PC | ~8.3 | ⬜ S5 |
-| EGS-z9-PC | ~9.0 | ⬜ S5 |
-| A2744-z9p1 | 9.11 | ⬜ S5 |
-| GS-z10-PC | ~10.2 | ⬜ S5 |
+### 4.1 "Impossible Galaxies"
+| Objet | z | log(M*) | Status |
+|-------|---|---------|--------|
+| AC-2168 | 6.63 | 10.57 | ✅ Inclus |
+| JWST-Impossible-z12 | 12.15 | 9.02 | ✅ Inclus |
+
+**Fichier**: `data/jwst/special/impossible_galaxies.csv`
+**Date**: 2026-01-05 21:45
+
+### 4.2 AGN Haute-z
+| Objet | z | Status |
+|-------|---|--------|
+| GHZ9 | 10.38 | ✅ Inclus |
+| GN-z11 | 10.60 | ✅ Inclus |
+
+**Fichier**: `data/jwst/special/agn_hosts.csv`
+**Date**: 2026-01-05 21:45
+
+### 4.3 Ultra High-z (z_spec > 12)
+| Attribut | Valeur |
+|----------|--------|
+| **N galaxies** | 17 |
+| **z range** | 12.01 - 14.52 |
+| **Status** | ✅ Complet |
+
+**Fichier**: `data/jwst/special/ultra_highz_zspec_gt12.csv`
 
 ---
 
-## 5. Données Complémentaires (à télécharger)
+## 5. Proto-clusters
+
+| Proto-cluster | z_spec | N membres | Status |
+|---------------|--------|-----------|--------|
+| GHZ9-cluster | 10.14 | 7 | ✅ |
+| A2744-z7p9 | 7.89 | 7 | ✅ |
+| GLASS-z10-PC | 10.13 | 5 | ✅ |
+| A2744-z9-PC | 9.04 | 4 | ✅ |
+| JD1-cluster | 10.31 | 2 | ✅ |
+| A2744-z13 | 12.63 | 1 | ✅ |
+| **Total** | | **26** | ✅ |
+
+**Fichier**: `data/jwst/special/protocluster_members.csv`
+**Date**: 2026-01-05 21:45
+
+---
+
+## 6. Données Complémentaires
 
 ### HST Legacy
 | Attribut | Valeur |
 |----------|--------|
 | **Source** | CANDELS, HUDF |
-| **Status** | ⬜ À télécharger (S3) |
+| **Status** | ⬜ Reporté Phase 3 |
+| **Priorité** | Basse (si nécessaire) |
 
-### Spectroscopie Compilée
+### Dawn JWST Archive
 | Attribut | Valeur |
 |----------|--------|
-| **Source** | Dawn JWST Archive |
 | **URL** | dawn-cph.github.io/dja |
-| **Status** | ⬜ À télécharger (S3) |
+| **Status** | ⬜ Non téléchargé |
+| **Note** | JANUS-Z inclut spectro équivalente |
+
+---
+
+## 7. Résumé Phase 2
+
+| Source | N | Status | Fichier |
+|--------|---|--------|---------|
+| Labbé+23 | 6 | ✅ | reference/labbe2023_candidates.csv |
+| JADES extraction | 7,138 | ✅ | processed/jades_highz_z8.csv |
+| JANUS-Z reference | 236 | ✅ | processed/janus_z_reference_catalog.csv |
+| EXCELS | 4 | ✅ | special/excels_metallicity_sample.csv |
+| A3COSMOS | 24 | ✅ | special/a3cosmos_dusty_sample.csv |
+| Proto-clusters | 26 | ✅ | special/protocluster_members.csv |
+| AGN hosts | 2 | ✅ | special/agn_hosts.csv |
+| Ultra high-z | 17 | ✅ | special/ultra_highz_zspec_gt12.csv |
+| Impossible | 2 | ✅ | special/impossible_galaxies.csv |
+
+**Total unique estimé**: ~7,400 galaxies z >= 8
 
 ---
 
 ## Légende Status
 - ✅ Téléchargé et validé
-- ⬜ À télécharger
-- 🔄 En cours
+- ⚠️ Partiel ou adaptation
+- ⬜ Non téléchargé / Reporté
 
 ---
 
-*Document auto-généré - VAL-Galaxies_primordiales*
+*DATA_SOURCES.md - VAL-Galaxies_primordiales*
+*Mise à jour: 2026-01-05 22:20 (Post-Phase 2)*

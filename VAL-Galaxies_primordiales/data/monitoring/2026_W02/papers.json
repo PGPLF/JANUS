@@ -1,0 +1,82 @@
+[
+  {
+    "arxiv_id": "2512.23157v1",
+    "title": "The GLASS-JWST Early Release Science Program. V. H$\u03b1$ luminosity functions at $z\\sim1.3$ and $z\\sim2.0$",
+    "authors": [
+      "Yuxuan Pang",
+      "Xin Wang",
+      "Tommaso Treu"
+    ],
+    "summary": "We present H$\u03b1$ luminosity function (LF) measurements at redshifts $z\\sim1.3$ and $z\\sim2.0$ using JWST NIRISS grism data from the GLASS-JWST survey. Based on emission lines spectroscopically identified in the F115W, F150W and F200W filters, we select 99 H$\u03b1$ emitters. Through detailed effective volume and completeness analysis for each source, we construct the H$\u03b1$ LF in two redshift bins. Thanks to the sensitivity of NIRISS WFSS and gravitational lensing magnification, our sample reaches intri",
+    "published": "2025-12-29",
+    "categories": [
+      "astro-ph.GA"
+    ],
+    "priority": "HIGH",
+    "score": 4
+  },
+  {
+    "arxiv_id": "2512.20945v1",
+    "title": "Mid-IR luminosity functions: inferred dusty cosmic star-formation and black hole accretion histories from the JWST SMILES",
+    "authors": [
+      "Chih-Teng Ling",
+      "Tomotsugu Goto",
+      "Seong Jin Kim"
+    ],
+    "summary": "Mid-infrared (mid-IR) observations are crucial for understanding galaxy evolution, tracing star formation, and active galactic nuclei (AGN) activity via dust emission. This work presents mid-IR galaxy luminosity functions (LFs) at $0.5 < z < 6$, derived from the JWST Systematic Mid-infrared Instrument Legacy Extragalactic Survey (SMILES) program. We combine 8 MIRI bands ($5-25$ $\u03bc$m) of SMILES and archival 23-band HST+JWST NIRCam photometry to construct an extensive catalog containing 2,813 gala",
+    "published": "2025-12-24",
+    "categories": [
+      "astro-ph.GA",
+      "astro-ph.CO"
+    ],
+    "priority": "HIGH",
+    "score": 4
+  },
+  {
+    "arxiv_id": "2512.24895v1",
+    "title": "Resolving the Origins and Pathways of Ionizing Radiation Escape with UV Integral Field Spectroscopy",
+    "authors": [
+      "Cody Carr",
+      "Renyue Cen",
+      "Brian Fleming"
+    ],
+    "summary": "The Epoch of Reionization marks the last major phase transition in the early Universe, during which the majority of neutral hydrogen once filling the intergalactic medium was ionized by the first galaxies. The James Webb Space Telescope (JWST) is now identifying promising galaxy candidates capable of producing sufficient ionizing photons to drive this transformation. However, the fraction of these photons that escape into intergalactic space--the escape fraction--remains highly uncertain. Stella",
+    "published": "2025-12-31",
+    "categories": [
+      "astro-ph.IM",
+      "astro-ph.GA"
+    ],
+    "priority": "LOW",
+    "score": 3
+  },
+  {
+    "arxiv_id": "2601.00089v1",
+    "title": "Little Red Dots: The Assembly of Early Supermassive Black Holes in the JWST Era",
+    "authors": [
+      "David D Vaida",
+      "Ryan Jeffrey Farber"
+    ],
+    "summary": "Since the launch of James Webb Space Telescope (JWST) in late 2021, our understanding of high-redshift objects has faced several upheavals. JWST has discovered much more massive galaxies and supermassive black holes (SMBH) than cosmological models had expected. Furthermore, JWST observations have revealed an entirely novel population of high-redshift objects. Characterized by a dominant red rest-frame component and point-like morphology, these ``little red dots'' (LRD) have set off a flurry of o",
+    "published": "2025-12-31",
+    "categories": [
+      "astro-ph.GA",
+      "astro-ph.CO"
+    ],
+    "priority": "LOW",
+    "score": 2
+  },
+  {
+    "arxiv_id": "2512.21632v1",
+    "title": "Can A Kinematically Hot and Thick Disk Form A Bar? : Role of Highly Spinning Dark Matter Halos",
+    "authors": [
+      "Sandeep Kumar Kataria"
+    ],
+    "summary": "Recent JWST observations claim the existence of a significant fraction of bars in the kinematically hotter and thicker disk at high redshift Universe. These observations challenge the current understanding of disk stability in galaxies similar to the Milky Way. The analytical work and N-body simulations suggest that the kinematically hot (dispersion-dominated) and thick disk are stable against bar formation. In this work, we perform the controlled N-body simulations of a kinematically hot and th",
+    "published": "2025-12-25",
+    "categories": [
+      "astro-ph.GA"
+    ],
+    "priority": "LOW",
+    "score": 2
+  }
+]

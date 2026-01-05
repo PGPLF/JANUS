@@ -1,0 +1,10 @@
+HIGH-Z GALAXY SAMPLE COMPILATION
+==================================================
+
+Sources:
+  1. JADES DR2/DR3 extraction (z>=8, z<15): ~4506
+  2. JANUS-Z reference catalog: 236
+  3. Labbé+23 reference: 6
+
+Note: JANUS-Z reference includes spectroscopic confirmations
+from JADES, GLASS, UNCOVER, CEERS, EXCELS, A3COSMOS
