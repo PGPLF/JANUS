@@ -1,0 +1,5 @@
+
+# Large data files (>100MB) - download separately
+*.fits
+VAL-Galaxies_primordiales/data/jwst/raw/*.fits
+VAL-Galaxies_primordiales/data/jwst/raw/**/*.fits

@@ -70,54 +70,207 @@
 
 ## Phase 2 : Acquisition et Préparation des Données
 
-### 2.1 Données Observationnelles JWST
-**Objectif** : Compiler et nettoyer les observations JWST
+### 2.0 Dataset de Référence - Reproduction Petit (Phase 3)
+**Objectif** : Identifier et télécharger le dataset utilisé dans la publication JANUS sur les galaxies primordiales
 
-#### 2.1.1 Catalogues de Galaxies
-- [ ] Télécharger catalogues JWST officiels
-  - JADES (JWST Advanced Deep Extragalactic Survey)
-  - CEERS (Cosmic Evolution Early Release Science)
-  - GLASS (Grism Lens-Amplified Survey from Space)
-- [ ] Compiler les galaxies à z > 8
-- [ ] Extraire : masses stellaires, SFR, magnitudes UV, redshifts
+#### 2.0.1 Dataset Labbé et al. 2023 (Publication de Référence)
+Le papier HAL de Petit (hal-03427072) "The Janus cosmological model: an answer to the deep crisis in cosmology" fait référence à la découverte de galaxies massives précoces qui a déclenché la "crise" du modèle ΛCDM. Le dataset de référence est :
+
+**Publication source** :
+- **Labbé et al. (2023)** - "A population of red candidate massive galaxies ~600 Myr after the Big Bang"
+- *Nature*, 616, 266-269 (2023)
+- arXiv: 2207.12446
+- DOI: 10.1038/s41586-023-05786-2
+
+**Contenu** :
+- 6 galaxies candidates massives (M* > 10^10 M☉) à 7.4 < z < 9.1
+- Données CEERS (Cosmic Evolution Early Release Science)
+- Première identification JWST de galaxies "impossiblement massives"
+
+**Actions** :
+- [ ] Télécharger données Labbé+23 depuis GitHub CEERS
+- [ ] Extraire les 6 candidats avec propriétés (z, M*, SFR, M_UV)
+- [ ] Documenter méthodologie originale pour reproduction exacte
 
 **Livrables** :
-- `data/jwst/raw/` : Données brutes
-- `data/jwst/catalogs/` : Catalogues compilés
-- `DATA_SOURCES.md` : Provenance et références
+- `data/reference/labbe2023_candidates.fits`
+- `docs/LABBE2023_METHODOLOGY.md`
 
-**Validation** : Vérification croisée avec publications sources
+**Validation** : Reproduction des valeurs publiées dans Nature
 
-#### 2.1.2 Nettoyage et Sélection
+---
+
+### 2.1 Données Observationnelles JWST - Catalogues Complets
+**Objectif** : Compiler TOUS les catalogues JWST disponibles (2022-2026)
+
+#### 2.1.1 Catalogues Primaires (Tier 1)
+
+| Survey | Champ | Release | N galaxies z>8 | URL |
+|--------|-------|---------|----------------|-----|
+| **JADES** | GOODS-N/S | DR4 (2025) | ~500-700 | archive.stsci.edu/hlsp/jades |
+| **CEERS** | EGS | DR1 (2023) | ~200-400 | ceers.github.io |
+| **GLASS** | Abell 2744 | v2 (2024-2025) | ~100-150 | glass.astro.ucla.edu |
+| **UNCOVER** | Abell 2744 | DR4 (2024) | ~150-200 | jwst-uncover.github.io |
+| **COSMOS-Web** | COSMOS | COSMOS2025 | ~300-500 | cosmos.astro.caltech.edu |
+| **EXCELS** | Multiple | 2025 | ~50-100 | Metallicité haute-z |
+| **A3COSMOS** | COSMOS | 2025 | ~30-50 | Galaxies NIRCam-dark |
+
+- [ ] Télécharger JADES **DR4** (catalogues photométriques + spectroscopiques)
+- [ ] Télécharger CEERS DR1 (données originales Labbé+23)
+- [ ] Télécharger GLASS-JWST v2 (spectroscopie NIRSpec)
+- [ ] Télécharger UNCOVER DR4 (ultra-profond Abell 2744)
+- [ ] Télécharger COSMOS2025 (statistique large surface)
+- [ ] Télécharger **EXCELS** (metallicité galaxies haute-z)
+- [ ] Télécharger **A3COSMOS** (galaxies poussiéreuses/NIRCam-dark, arXiv:2511.08672)
+
+#### 2.1.2 Catalogues Secondaires (Tier 2)
+
+| Survey | Spécialité | Status |
+|--------|------------|--------|
+| **PRIMER** | UDS + COSMOS | En cours |
+| **NGDEEP** | Ultra-profond | DR1 2024 |
+| **FRESCO** | Spectroscopie grism | DR1 2024 |
+| **EIGER** | Quasars haute-z | DR1 2024 |
+| **ALMA REBELS** | [CII] emission, dusty | En cours |
+
+- [ ] Vérifier disponibilité PRIMER
+- [ ] Télécharger NGDEEP si disponible
+- [ ] Intégrer FRESCO pour spectro complémentaire
+- [ ] Intégrer ALMA REBELS pour galaxies poussiéreuses
+
+#### 2.1.2b Proto-Clusters et Découvertes Exceptionnelles
+
+**Proto-clusters confirmés z > 6.5** (JANUS-Z utilise 6 proto-clusters):
+
+| Proto-cluster | z_spec | N_membres | Référence |
+|---------------|--------|-----------|-----------|
+| A2744-z7p9 | 7.88 | 8+ | GLASS/UNCOVER 2024 |
+| JADES-GS-z7-01 | 7.9 | 5+ | JADES 2024 |
+| CEERS-z8-PC | ~8.3 | 4+ | CEERS 2024 |
+| EGS-z9-PC | ~9.0 | 3+ | CEERS/JADES |
+| A2744-z9p1 | 9.11 | 4+ | UNCOVER 2024 |
+| GS-z10-PC | ~10.2 | 3+ | JADES 2025 |
+
+- [ ] Compiler catalogues proto-clusters spectroscopiquement confirmés
+- [ ] Documenter dynamique et masses totales
+
+**Découvertes exceptionnelles** :
+
+| Objet | z | Propriété | Date découverte |
+|-------|---|-----------|-----------------|
+| AC-2168 | 12.15 | "Impossible galaxy" - masse formée avant Big Bang (ΛCDM) | 3 Jan 2026 |
+| GHZ9 | 10.3+ | AGN confirmé haute-z | 2024 |
+| JADES-GS-z14-0 | 14.32 | Record z_spec | 2024 |
+
+- [ ] Télécharger données "impossible galaxy" AC-2168 (arXiv Jan 2026)
+- [ ] Documenter GHZ9 et autres AGN haute-z
+- [ ] Compiler liste galaxies z > 12 avec z_spec
+
+#### 2.1.3 Compilations et Archives Communautaires
+
+| Resource | Description | URL |
+|----------|-------------|-----|
+| **Dawn JWST Archive (DJA)** | Spectro NIRSpec compilée | dawn-cph.github.io/dja |
+| **JWST High-z Sources** | Compilation communautaire | jwst-sources.herokuapp.com |
+| **VizieR JWST catalogs** | Archives standardisées | vizier.cds.unistra.fr |
+
+- [ ] Synchroniser avec Dawn JWST Archive
+- [ ] Télécharger compilation Harikane+23/24
+- [ ] Vérifier VizieR pour catalogues additionnels
+
+**Livrables** :
+- `data/jwst/raw/{survey}/` : Données brutes par survey
+- `data/jwst/catalogs/` : Catalogues harmonisés
+- `DATA_SOURCES.md` : Provenance complète et références
+
+**Validation** : Cross-match entre surveys (écarts < 0.1 dex en masse)
+
+#### 2.1.4 Nettoyage et Sélection
 - [ ] Critères de sélection (qualité photométrique, contamination)
 - [ ] Gestion des incertitudes et erreurs systématiques
 - [ ] Documentation des biais de sélection
 - [ ] Échantillon final avec statistiques complètes
 
 **Livrables** :
-- `data/jwst/processed/sample_final.csv`
+- `data/jwst/processed/sample_final.fits`
+- `data/jwst/processed/sample_gold.fits` (haute qualité)
 - `notebooks/01_data_cleaning.ipynb`
 - `DATA_QUALITY.md` : Rapport de qualité
 
-**Validation** : Comparaison des distributions avec littérature
+**Validation** : Comparaison des distributions avec littérature récente (2024-2025)
+
+---
 
 ### 2.2 Données Complémentaires
-**Objectif** : Intégrer d'autres observations pertinentes
+**Objectif** : Intégrer observations pré-JWST et spectroscopie
 
 #### 2.2.1 Hubble Legacy
-- [ ] Données HST pour z ~ 6-8 (overlap avec JWST)
-- [ ] Fonction de luminosité UV de référence
+- [ ] Données HST pour z ~ 6-8 (CANDELS, HUDF, Frontier Fields)
+- [ ] Fonction de luminosité UV de référence (Bouwens+21)
 
-#### 2.2.2 Spectroscopie
-- [ ] Redshifts spectroscopiques confirmés
+#### 2.2.2 Spectroscopie Confirmée
+- [ ] Redshifts spectroscopiques confirmés (N > 100 à z > 8)
 - [ ] Lignes d'émission ([OIII], Hα, [CII])
 - [ ] Indices de maturité chimique
 
+**Sources spectroscopiques principales** :
+| Source | N_spec (z>8) | Référence |
+|--------|--------------|-----------|
+| JADES NIRSpec | ~60-80 | Bunker+23, Curtis-Lake+23 |
+| CEERS NIRSpec | ~30-40 | Arrabal Haro+23 |
+| GLASS NIRSpec | ~20-30 | Castellano+24 |
+| UNCOVER PRISM | ~50-70 | Price+24 |
+
 **Livrables** :
-- `data/complementary/` : Données additionnelles
+- `data/complementary/hst_legacy.fits`
+- `data/complementary/spectro_confirmed.fits`
 - `notebooks/02_complementary_data.ipynb`
 
-**Validation** : Cohérence multi-instruments
+**Validation** : Cohérence multi-instruments, z_spec vs z_phot
+
+---
+
+### 2.3 Veille Scientifique Hebdomadaire
+**Objectif** : Détection automatique de nouveaux datasets et publications
+
+#### 2.3.1 Sources de Veille
+
+| Source | Fréquence | Mots-clés |
+|--------|-----------|-----------|
+| arXiv astro-ph.GA | Quotidien | JWST, high-z, z>8, early galaxies |
+| arXiv astro-ph.CO | Quotidien | primordial galaxies, UV luminosity function |
+| MAST Archive | Hebdomadaire | Nouveaux HLSP |
+| Survey websites | Hebdomadaire | Data releases |
+
+#### 2.3.2 Script de Veille Automatisé
+- [ ] Créer script `scripts/weekly_arxiv_monitor.py`
+- [ ] Alertes sur nouveaux catalogues JWST
+- [ ] Rapport hebdomadaire automatique
+- [ ] Intégration Slack/email (optionnel)
+
+**Script fonctionnalités** :
+```python
+# Pseudo-code
+- Requête arXiv API (astro-ph.GA, astro-ph.CO)
+- Filtrage mots-clés: ["JWST", "z>10", "high redshift", "early galaxies",
+                       "luminosity function", "stellar mass function"]
+- Cross-reference avec catalogues existants
+- Génération rapport Markdown
+- Archivage dans data/monitoring/YYYY_WW/
+```
+
+#### 2.3.3 Procédure de Mise à Jour
+- [ ] Revue hebdomadaire des alertes (chaque lundi)
+- [ ] Évaluation pertinence nouveaux datasets
+- [ ] Intégration si critères remplis
+- [ ] Mise à jour CHANGELOG_DATA.md
+
+**Livrables** :
+- `scripts/weekly_arxiv_monitor.py`
+- `data/monitoring/` : Historique des alertes
+- `CHANGELOG_DATA.md` : Log des mises à jour données
+
+**Validation** : Aucun dataset majeur manqué (vérification mensuelle)
 
 ---
 
