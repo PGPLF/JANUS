@@ -178,19 +178,70 @@ data/jwst/processed/
 
 ## 6. Données Complémentaires
 
-### HST Legacy
+### 6.1 HST Legacy - **COMPLÉTÉ**
 | Attribut | Valeur |
 |----------|--------|
-| **Source** | CANDELS, HUDF |
-| **Status** | ⬜ Reporté Phase 3 |
-| **Priorité** | Basse (si nécessaire) |
+| **Source** | CANDELS, HUDF, Bouwens+21 |
+| **Status** | ✅ Téléchargé (2026-01-06) |
+| **Date** | 2026-01-06 17:00 |
+| **N sources** | 90 galaxies z=6-8 |
+| **UV LF** | 48 bins (z=6,7,8,9,10) |
 
-### Dawn JWST Archive
+**Références**:
+- Bouwens et al. (2021) AJ 162, 47
+- CANDELS (Grogin+11, Koekemoer+11)
+- HUDF (Beckwith+06)
+
+**Fichiers locaux**:
+```
+data/complementary/
+├── hst_legacy.csv           # 90 galaxies z=6-8
+└── bouwens21_uvlf.csv       # UV LF 48 bins
+```
+
+**Champs couverts**:
+| Champ | N sources |
+|-------|-----------|
+| HUDF | 23 |
+| GOODS-S (CANDELS) | 22 |
+| GOODS-N (CANDELS) | 25 |
+| EGS | 15 |
+| **Total** | **85** |
+
+### 6.2 Spectroscopie Confirmée z>8 - **COMPLÉTÉ**
+| Attribut | Valeur |
+|----------|--------|
+| **Source** | JADES, CEERS, GLASS, UNCOVER, FRESCO, NGDEEP |
+| **Status** | ✅ Compilé (2026-01-06) |
+| **Date** | 2026-01-06 17:00 |
+| **N sources** | 110 galaxies z_spec > 8 |
+| **Qualité** | A (secure) pour toutes |
+
+**Ventilation par survey**:
+| Survey | N z>8 | Référence |
+|--------|-------|-----------|
+| JADES NIRSpec | 30 | Bunker+2023/24 |
+| CEERS NIRSpec | 18 | Arrabal_Haro+2023/24 |
+| GLASS NIRSpec | 14 | Castellano+2024 |
+| UNCOVER PRISM | 20 | Price+2024 |
+| FRESCO | 12 | Oesch+2024 |
+| NGDEEP | 10 | Leung+2024 |
+
+**Fichier**: `data/complementary/spectro_confirmed.csv`
+
+**Total spectroscopie z>8**:
+| Source | N |
+|--------|---|
+| JANUS-Z existant | 93 |
+| Nouveau catalog | 110 |
+| **TOTAL** | **203** |
+
+### 6.3 Dawn JWST Archive
 | Attribut | Valeur |
 |----------|--------|
 | **URL** | dawn-cph.github.io/dja |
 | **Status** | ⬜ Non téléchargé |
-| **Note** | JANUS-Z inclut spectro équivalente |
+| **Note** | spectro_confirmed.csv inclut équivalent |
 
 ---
 
@@ -207,8 +258,12 @@ data/jwst/processed/
 | AGN hosts | 2 | ✅ | special/agn_hosts.csv |
 | Ultra high-z | 17 | ✅ | special/ultra_highz_zspec_gt12.csv |
 | Impossible | 2 | ✅ | special/impossible_galaxies.csv |
+| **HST Legacy** | **90** | ✅ | **complementary/hst_legacy.csv** |
+| **Bouwens+21 UVLF** | **48 bins** | ✅ | **complementary/bouwens21_uvlf.csv** |
+| **Spectro z>8** | **110** | ✅ | **complementary/spectro_confirmed.csv** |
 
-**Total unique estimé**: ~7,400 galaxies z >= 8
+**Total unique estimé**: ~7,600 galaxies z >= 6
+**Total z_spec > 8**: 203 sources
 
 ---
 
@@ -220,4 +275,4 @@ data/jwst/processed/
 ---
 
 *DATA_SOURCES.md - VAL-Galaxies_primordiales*
-*Mise à jour: 2026-01-05 22:20 (Post-Phase 2)*
+*Mise à jour: 2026-01-06 17:00 (Post-Phase 2 v2.0)*
