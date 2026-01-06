@@ -201,7 +201,62 @@ make
 4. **Références** : Utiliser \label{} et \ref{} pour toutes les équations
 5. **Bibliographie** : Maintenir à jour references.bib
 
-## 10. Alternatives – également robustes
+## 10. Conversion HTML vers PDF
+
+### Problème fréquent : Encodage des caractères
+
+Les fichiers HTML avec caractères accentués (français) peuvent produire des PDF corrompus si l'encodage n'est pas correctement géré.
+
+**Symptômes de corruption :**
+- Caractères "Ã©" au lieu de "é"
+- Caractères "Ã " au lieu de "à"
+- Symboles chinois ou carrés à la place des accents
+
+### Solution : Pandoc + pdflatex
+
+```bash
+# Conversion HTML vers PDF avec encodage UTF-8 correct
+pandoc fichier.html -o fichier.pdf \
+    --pdf-engine=pdflatex \
+    -V geometry:margin=2.5cm \
+    -V fontsize=11pt \
+    -V lang=fr
+
+# Exemple concret (critique Riazuelo)
+pandoc Riazuelo_IAP_Critique_JPP.html -o Riazuelo_IAP_Critique_JPP.pdf \
+    --pdf-engine=pdflatex \
+    -V geometry:margin=2.5cm \
+    -V fontsize=11pt \
+    -V lang=fr
+```
+
+### Vérification avant conversion
+
+```bash
+# Vérifier l'encodage du fichier source
+file fichier.html
+# Doit afficher: "HTML document text, Unicode text, UTF-8 text"
+
+# Vérifier le charset dans le HTML
+grep -i "charset" fichier.html
+# Doit contenir: charset=UTF-8
+```
+
+### Alternatives si pandoc échoue
+
+```bash
+# Option 1: wkhtmltopdf (si installé)
+brew install wkhtmltopdf
+wkhtmltopdf --encoding utf-8 fichier.html fichier.pdf
+
+# Option 2: Python avec weasyprint
+pip install weasyprint
+python3 -c "from weasyprint import HTML; HTML('fichier.html').write_pdf('fichier.pdf')"
+```
+
+---
+
+## 11. Alternatives – également robustes
 
 ### a. Markdown + Pandoc + LaTeX
 ```bash
@@ -217,7 +272,7 @@ pandoc document.md -o document.pdf --template=eisvogel.pdf --filter=pandoc-citep
 jupyter nbconvert --to pdf notebook.ipynb
 ```
 
-## 11. Résumé
+## 12. Résumé
 
 Pour le projet JANUS, nous recommandons: 
 
