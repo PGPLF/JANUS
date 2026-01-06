@@ -10,8 +10,8 @@
 | Phase | Statut | Date Début | Date Fin | Conformité | Rapport |
 |-------|--------|------------|----------|------------|---------|
 | **Phase 1** | **COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT-EXECUTION_Phase1.md v4.0 |
-| **Phase 2** | **COMPLÉTÉ** | 2026-01-05 | 2026-01-06 | **95%** | RPT-AUDIT_Phases1-2.md |
-| Phase 3 | **AUTORISÉ** | - | - | - | - |
+| **Phase 2** | **⚠️ CORRECTIONS** | 2026-01-05 | 2026-01-06 | **70%** | RPT-AUDIT_DATA_QUALITY.md |
+| Phase 3 | **EN ATTENTE** | - | - | - | - |
 | Phase 4 | EN ATTENTE | - | - | - | - |
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
@@ -43,26 +43,47 @@
 
 **Détails:** Voir RPT-EXECUTION_Phase1.md v4.0
 
-### Audit Phase 2 (2026-01-06) - v2.0
+### Audit Phase 2 (2026-01-06) - v3.0 (AUDIT QUALITÉ)
 
 **Historique des audits:**
 
 | Version | Conformité | Changement |
 |---------|------------|------------|
 | v1.0 | 80% | Audit initial (2026-01-05) |
-| **v2.0** | **95%** | **HST Legacy + Spectro complétés** |
+| v2.0 | 95% | HST Legacy + Spectro complétés |
+| **v3.0** | **70%** | **🚨 AUDIT QUALITÉ - Problèmes critiques détectés** |
 
-**Constat final (v2.0):**
-- Données JWST: **100%** - 7,374 galaxies z>8
-- Données complémentaires: **100%** complètes
-  - HST Legacy: 90 galaxies z=6-8 (hst_legacy.csv)
-  - UV LF Bouwens+21: 48 bins (bouwens21_uvlf.csv)
-  - Spectro z>8: **203 sources** (objectif atteint)
-- Veille scientifique: **100%** opérationnelle
+**Problèmes critiques identifiés (v3.0):**
 
-**Verdict:** Phase 2 VALIDÉE - Phase 3 autorisée
+1. **JADES Extraction INVALIDE** 🔴
+   - `jades_highz_z8.csv`: 7,138 entrées avec z = 21.99 (placeholder EAZY)
+   - Ces données sont des **ARTEFACTS** - inutilisables
+   - Comptage "7,138 z>=8" est **FAUX**
 
-**Détails:** Voir RPT-AUDIT_Phases1-2.md
+2. **Source non-scientifique** 🔴
+   - `impossible_galaxies.csv`: JWST-Impossible-z12
+   - Référence: "GoodMenProject-Jan2026" (pas peer-reviewed)
+
+3. **Doublons inter-catalogues** 🟠
+   - GHZ2, GHZ9-confirmed, GHZ1-7 apparaissent dans multiples fichiers
+   - Comptage total gonflé
+
+4. **Valeurs manquantes mal encodées** 🟠
+   - metallicity_12OH = -1.0 ou 8.5 (placeholders)
+
+**Données exploitables après correction:**
+| Catalogue | N valide | Statut |
+|-----------|----------|--------|
+| JANUS-Z reference | ~220 | ✅ Utilisable |
+| Spectro z>8 | 110 | ✅ Utilisable |
+| Labbé+23 | 6 | ✅ Utilisable |
+| HST Legacy | 90 | ✅ z_phot only |
+| **JADES extraction** | **~0** | ❌ **INVALIDE** |
+| **Total exploitable** | **~420** | - |
+
+**Verdict:** Phase 2 NÉCESSITE CORRECTIONS avant Phase 3
+
+**Détails:** Voir RPT-AUDIT_DATA_QUALITY.md
 
 ---
 
