@@ -1,5 +1,5 @@
 # Phase 2 : Acquisition et Preparation des Donnees
-## Sous-Plan Detaille - Version 3.3 (MAJ 2026-01-06)
+## Sous-Plan Detaille - Version 3.4 (MAJ 2026-01-06)
 
 **Objectif Global** : Constituer un echantillon complet de galaxies primordiales (z > 8) incluant le dataset de reference pour reproduction Phase 3, tous les catalogues JWST recents (2022-2026), et un systeme de veille hebdomadaire.
 
@@ -20,9 +20,9 @@
 | S5 | Veille arXiv + Validation | ✅ COMPLÉTÉ | 2026-01-05 22:15 |
 | S6 | **MAJ: JADES DR4 + COSMOS2025 + DJA** | ✅ DISPONIBLE | 2026-01-06 |
 
-**Conformité globale**: 98% (↑ de 95%)
+**Conformité globale**: 100% ✅ COMPLÈTE
 **Écarts documentés**: PLAN.md section "Évolutions Phase 2"
-**Note**: JADES DR4 téléchargé (90MB), COSMOS2025 requiert téléchargement manuel
+**Note**: Tous datasets téléchargés (JADES DR4 90MB, COSMOS2025 8.4GB, Bouwens+21 1.5MB)
 
 ### Mise à jour 2026-01-06: Nouveaux Datasets Disponibles
 
@@ -584,12 +584,12 @@ if __name__ == "__main__":
 - [x] Valeurs reproduites (Table 1 Nature - revision 3)
 - [x] Methodologie documentee (LABBE2023_METHODOLOGY.md)
 
-### Catalogues JWST Tier 1 (2.1.1) - ✅ 95% (↑ de 70%)
-- [x] **JADES DR4** ✅ DISPONIBLE (5190 spectres, 396 z>5.7) - arXiv:2510.01033
+### Catalogues JWST Tier 1 (2.1.1) - ✅ 100%
+- [x] **JADES DR4** ✅ TÉLÉCHARGÉ (90MB, 5190 spectres, 396 z>5.7)
 - [x] CEERS NIRSpec DR0.7 telecharge
 - [x] GLASS integre via JANUS-Z reference
 - [x] UNCOVER integre via JANUS-Z reference
-- [x] **COSMOS2025** ✅ DISPONIBLE (780,000 galaxies) - arXiv:2506.03243
+- [x] **COSMOS2025** ✅ TÉLÉCHARGÉ (8.4GB, 780,000 galaxies)
 - [x] **EXCELS** integre (4 galaxies metallicite)
 - [x] **A3COSMOS** integre (24 galaxies NIRCam-dark)
 - [x] Cross-match effectue (JANUS-Z v17.1)
@@ -601,8 +601,8 @@ if __name__ == "__main__":
 - [x] GHZ9 et AGN haute-z documentes (agn_hosts.csv)
 - [x] Liste z>12 complete (ultra_highz_zspec_gt12.csv - 17 gal.)
 
-### Complementaires (2.2) - ✅ 90% (↑ de 50%)
-- [ ] ~~HST legacy~~ - *Reporté Phase 3 (optionnel)*
+### Complementaires (2.2) - ✅ 100%
+- [x] **HST Bouwens+21** ✅ TÉLÉCHARGÉ (1.5MB, 24,741 sources z=2-9)
 - [x] **DJA Spectro** ✅ DISPONIBLE (80,367 spectres z=5.5-13.4) - Zenodo
 - [x] Spectro compilee via JANUS-Z + DJA
 - [x] z_spec vs z_phot coherent
@@ -648,4 +648,5 @@ if __name__ == "__main__":
 | v3.0 | 2026-01-05 | Initial Phase 2 complétée (80%) |
 | v3.1 | 2026-01-05 | Checklist finale, conformité documentée |
 | v3.2 | 2026-01-06 | JADES DR4 + COSMOS2025 + DJA disponibles (95%) |
-| **v3.3** | **2026-01-06** | **JADES DR4 téléchargé + DATA_QUALITY.md créé (98%)** |
+| v3.3 | 2026-01-06 | JADES DR4 téléchargé + DATA_QUALITY.md créé (98%) |
+| **v3.4** | **2026-01-06** | **COSMOS2025 + Bouwens+21 téléchargés - 100% COMPLÈTE** |
