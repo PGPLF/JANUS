@@ -1,0 +1,11 @@
+{
+  "run_name": "lcdm_uv_lf",
+  "status": "completed",
+  "config": {
+    "nwalkers": 32,
+    "ndim": 5,
+    "nsteps": 300,
+    "checkpoint_interval": 100
+  },
+  "last_update": "2026-01-06T23:23:24.432573"
+}
