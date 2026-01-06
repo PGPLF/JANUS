@@ -1,77 +1,66 @@
-# README - Instructions JANUS
+# Instructions JANUS
+
+**Dernière mise à jour** : 5 Janvier 2026 - 21:00 UTC
 
 Ce dossier contient les instructions pour le projet JANUS.
 
-## Objectif
-
-Documenter les instructions de travail, les procédures et les guidelines pour le développement du projet JANUS.
+---
 
 ## Liste des Instructions
 
-- **INS-PDF_COMPILATION.md** : Guide de compilation PDF avec LaTeX et Jupyter
-- **INS-FONTS_EQUATIONS.md** : Guide des polices et affichage correct des équations
-- **README.md** : Ce fichier (vue d'ensemble des instructions)
+| Fichier | Description | Dernière MAJ |
+|---------|-------------|--------------|
+| **INS-Infrastructure.md** | Configuration machines, packages Python, requirements | 2026-01-05 |
+| **INS-Statistiques.md** | Calculs MCMC intensifs, checkpoints, optimisations | 2026-01-05 |
+| **INS-CLAUDE.md** | Bonnes pratiques assistant IA, accélération traitements | 2026-01-05 |
+| **INS-PDF_COMPILATION.md** | Compilation PDF avec LaTeX et Jupyter | 2026-01-05 |
+| **INS-FONTS_EQUATIONS.md** | Polices et affichage des équations | 2026-01-05 |
+
+---
 
 ## Convention de Nommage
 
-Tous les fichiers d'instructions portent le préfixe `INS-` pour faciliter leur identification et gestion.
+- Préfixe `INS-` pour tous les fichiers d'instructions
+- Format : `INS-{Domaine}.md`
 
 ---
 
-## État d'Installation / Configuration
+## Résumé par Domaine
 
-### Session du 5 Janvier 2026 - 15:20 UTC
+### Infrastructure (INS-Infrastructure.md)
+- Configuration matérielle des machines
+- Packages Python et versions minimales
+- État d'installation par machine
+- Historique des modifications avec réversibilité
 
-#### Machine: pg-mac01 (macOS Darwin 24.6.0, Apple Silicon arm64)
+### Statistiques (INS-Statistiques.md)
+- Contraintes calculs longs (mémoire, interruptions)
+- Système de checkpoints (emcee, dynesty)
+- Optimisations Apple Silicon M4
+- Reprise de calculs interrompus
 
-**✅ Outils Installés et Fonctionnels** :
-- Python 3.13.0 (environnement virtuel: `/Users/pg-mac01/PythonProject/.venv/`)
-- pip 25.3
-- Jupyter Notebook 7.5.1
-- JupyterLab 4.5.1
-- nbconvert 7.16.6
-- Git (via Homebrew)
+### Assistant IA (INS-CLAUDE.md)
+- Stratégies d'accélération (background, parallèle)
+- Workflow recommandé pour MCMC
+- Script `run_mcmc_optimized.py`
+- Commandes utiles et monitoring
 
-**⚠️ Installation Manuelle Requise** :
-- **LaTeX** (pdflatex, bibtex) : Nécessite privilèges administrateur
-  - Commande: `brew install --cask basictex` (avec sudo)
-  - Alternative: Télécharger MacTeX depuis https://www.tug.org/mactex/
+### Compilation (INS-PDF_COMPILATION.md)
+- Export PDF depuis Jupyter
+- Configuration LaTeX
+- Résolution problèmes courants
 
-**Environnement** :
-- Répertoire de travail: `/`
-- Homebrew: `/opt/homebrew/bin/brew`
-
----
-
-### Instructions pour Nouvelles Machines
-
-Lors de l'ajout d'une nouvelle machine de travail, ajouter une section ci-dessous:
-
-#### Machine: [NOM] - [DATE]
-
-**Système** : [OS, Version, Architecture]
-
-**Outils Installés** :
-- [ ] Python 3.10+
-- [ ] Jupyter
-- [ ] LaTeX
-- [ ] Git
-
-**Configuration** :
-```bash
-git clone https://github.com/PGPLF/JANUS.git
-cd JANUS
-# ... commandes spécifiques
-```
-
-**Notes** : [Notes spécifiques à cette machine]
+### Équations (INS-FONTS_EQUATIONS.md)
+- Polices mathématiques
+- Rendu LaTeX dans notebooks
+- Symboles cosmologiques
 
 ---
 
-## Mise à Jour des Instructions
+## Mise à Jour
 
-Pour mettre à jour cet état d'installation:
-1. Ajouter une nouvelle section datée
-2. Conserver l'historique des sessions précédentes
-3. Mettre à jour la liste des outils
+Lors de la modification d'une INS :
+1. Mettre à jour l'horodatage dans l'INS
+2. Ajouter une entrée dans l'historique de l'INS
+3. Mettre à jour ce README (tableau "Liste des Instructions")
 
