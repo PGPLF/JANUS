@@ -1,6 +1,6 @@
 # Instructions JANUS
 
-**Dernière mise à jour** : 5 Janvier 2026 - 21:00 UTC
+**Dernière mise à jour** : 6 Janvier 2026
 
 Ce dossier contient les instructions pour le projet JANUS.
 
@@ -15,6 +15,15 @@ Ce dossier contient les instructions pour le projet JANUS.
 | **INS-CLAUDE.md** | Bonnes pratiques assistant IA, accélération traitements | 2026-01-05 |
 | **INS-PDF_COMPILATION.md** | Compilation PDF avec LaTeX et Jupyter | 2026-01-05 |
 | **INS-FONTS_EQUATIONS.md** | Polices et affichage des équations | 2026-01-05 |
+
+---
+
+## Sous-Projets
+
+| Projet | Description | Status |
+|--------|-------------|--------|
+| **JANUS-S** | Supernovae Ia (Pantheon+, DES-SN5YR) - Contraintes JANUS vs ΛCDM | V2 Complete |
+| **JANUS-Z** | Galaxies primordiales JWST (CEERS, JADES, UNCOVER) | En cours |
 
 ---
 
@@ -63,4 +72,3 @@ Lors de la modification d'une INS :
 1. Mettre à jour l'horodatage dans l'INS
 2. Ajouter une entrée dans l'historique de l'INS
 3. Mettre à jour ce README (tableau "Liste des Instructions")
-
