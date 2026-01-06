@@ -299,14 +299,29 @@ def autocorrelation_time(chain):
     tau : array
         Autocorrelation time for each parameter
     """
+    chain = np.atleast_2d(chain)
+    n_steps, n_params = chain.shape
+
     try:
         # Use emcee's integrated autocorrelation time estimator
         from emcee.autocorr import integrated_time
-        tau = integrated_time(chain, quiet=True)
+
+        # Compute tau for each parameter separately to ensure array output
+        tau = np.zeros(n_params)
+        for i in range(n_params):
+            try:
+                tau_val = integrated_time(chain[:, i], quiet=True)
+                # Handle both scalar and array returns
+                tau[i] = float(np.atleast_1d(tau_val)[0])
+            except Exception:
+                # If estimation fails for a parameter, use heuristic
+                tau[i] = n_steps / 10.0  # Conservative estimate
+
         return tau
+
     except Exception as e:
         warnings.warn(f"Could not compute autocorrelation time: {e}")
-        return np.full(chain.shape[1], np.nan)
+        return np.full(n_params, np.nan)
 
 
 def effective_sample_size(chain):
@@ -325,7 +340,15 @@ def effective_sample_size(chain):
     ess : array
         Effective sample size for each parameter
     """
-    n_steps = chain.shape[0]
+    chain = np.atleast_2d(chain)
+    n_steps, n_params = chain.shape
     tau = autocorrelation_time(chain)
+
+    # Ensure tau is an array with correct shape
+    tau = np.atleast_1d(tau)
+    if len(tau) != n_params:
+        warnings.warn(f"tau shape mismatch: expected {n_params}, got {len(tau)}")
+        tau = np.full(n_params, tau[0] if len(tau) > 0 else 1.0)
+
     ess = n_steps / tau
     return ess

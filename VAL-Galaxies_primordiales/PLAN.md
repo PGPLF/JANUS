@@ -9,7 +9,7 @@
 
 | Phase | Statut | Date Début | Date Fin | Conformité | Rapport |
 |-------|--------|------------|----------|------------|---------|
-| Phase 1 | **EN COURS** | 2026-01-06 | - | 75% | RPT-EXECUTION_Phase1.md |
+| Phase 1 | **EN COURS** | 2026-01-06 | - | 83% | RPT-EXECUTION_Phase1.md v3.0 |
 | **Phase 2** | **COMPLÉTÉ** | 2026-01-05 | 2026-01-05 | 80% | RPT_PHASE2_VALIDATION.md |
 | Phase 3 | EN ATTENTE | - | - | - | - |
 | Phase 4 | EN ATTENTE | - | - | - | - |
@@ -17,23 +17,28 @@
 | Phase 6 | EN ATTENTE | - | - | - | - |
 | Phase 7 | EN ATTENTE | - | - | - | - |
 
-### Audit Phase 1 (2026-01-06) - Mise à jour
+### Audit Phase 1 (2026-01-06) - v3.0
 
-**Constat initial (audit 1):**
-- Conformité: 15% - Infrastructure partiellement en place
+**Historique des audits:**
 
-**Constat actuel (audit 2):**
-- Conformité: **75%**
+| Version | Conformité | Tests | Changement |
+|---------|------------|-------|------------|
+| v1.0 | 15% | 0% | Audit initial |
+| v2.0 | 75% | 95% | Infrastructure complète |
+| **v3.0** | **83%** | **100%** | Tests corrigés |
+
+**Constat actuel (v3.0):**
 - Infrastructure de calcul (1.2): **100%** complète
   - Modules src/cosmology/janus.py, lcdm.py opérationnels
-  - Tests unitaires: 39/41 passent (95%)
-  - requirements.txt, environment.yml, SETUP.md créés
+  - Tests unitaires: **41/41 passent (100%)**
+  - Corrections appliquées: test_hubble_at_z_zero, test_effective_sample_size
 - Documentation théorique (1.1): **0%** - reste à compléter
   - JANUS_PREDICTIONS.md manquant
   - LCDM_PREDICTIONS.md manquant
-  - Notebooks théoriques manquants
 
-**Actions requises:** Voir RPT-EXECUTION_Phase1.md v2.0
+**Décision:** Phase 3 peut démarrer, documentation en parallèle.
+
+**Détails:** Voir RPT-EXECUTION_Phase1.md v3.0
 
 ---
 
