@@ -10,8 +10,8 @@
 | Phase | Statut | Date Début | Date Fin | Conformité | Rapport |
 |-------|--------|------------|----------|------------|---------|
 | **Phase 1** | **COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT-EXECUTION_Phase1.md v4.0 |
-| **Phase 2** | **⚠️ CORRECTIONS** | 2026-01-05 | 2026-01-06 | **70%** | RPT-AUDIT_DATA_QUALITY.md |
-| Phase 3 | **EN ATTENTE** | - | - | - | - |
+| **Phase 2** | **✅ COMPLÉTÉ** | 2026-01-05 | 2026-01-06 | **95%** | RPT-AUDIT_FINAL_v4.md |
+| Phase 3 | **AUTORISÉ** | - | - | - | - |
 | Phase 4 | EN ATTENTE | - | - | - | - |
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
@@ -43,7 +43,7 @@
 
 **Détails:** Voir RPT-EXECUTION_Phase1.md v4.0
 
-### Audit Phase 2 (2026-01-06) - v3.0 (AUDIT QUALITÉ)
+### Audit Phase 2 (2026-01-06) - v4.0 (POST-CORRECTIONS)
 
 **Historique des audits:**
 
@@ -51,39 +51,42 @@
 |---------|------------|------------|
 | v1.0 | 80% | Audit initial (2026-01-05) |
 | v2.0 | 95% | HST Legacy + Spectro complétés |
-| **v3.0** | **70%** | **🚨 AUDIT QUALITÉ - Problèmes critiques détectés** |
+| v3.0 | 70% | Audit qualité - Problèmes critiques détectés |
+| **v4.0** | **95%** | **✅ CORRECTIONS APPLIQUÉES** |
 
-**Problèmes critiques identifiés (v3.0):**
+**Corrections appliquées (v4.0):**
 
-1. **JADES Extraction INVALIDE** 🔴
-   - `jades_highz_z8.csv`: 7,138 entrées avec z = 21.99 (placeholder EAZY)
-   - Ces données sont des **ARTEFACTS** - inutilisables
-   - Comptage "7,138 z>=8" est **FAUX**
+1. **JADES Re-extraction** ✅
+   - Filtre corrigé: EAZY_l68 >= 8 (au lieu de EAZY_z_a)
+   - Résultat: **1,058 sources fiables** (z_err < 3, 8 <= z <= 15)
+   - Fichier: `jades_highz_RELIABLE.csv`
 
-2. **Source non-scientifique** 🔴
-   - `impossible_galaxies.csv`: JWST-Impossible-z12
-   - Référence: "GoodMenProject-Jan2026" (pas peer-reviewed)
+2. **Source non-scientifique supprimée** ✅
+   - JWST-Impossible-z12 retiré de tous les catalogues
+   - Backup créé
 
-3. **Doublons inter-catalogues** 🟠
-   - GHZ2, GHZ9-confirmed, GHZ1-7 apparaissent dans multiples fichiers
-   - Comptage total gonflé
+3. **Déduplication effectuée** ✅
+   - 74 doublons identifiés et résolus
+   - Catalogue consolidé: **235 sources uniques**
+   - Table de mapping créée
 
-4. **Valeurs manquantes mal encodées** 🟠
-   - metallicity_12OH = -1.0 ou 8.5 (placeholders)
+**Données exploitables (v4.0):**
+| Catalogue | N sources | Statut |
+|-----------|-----------|--------|
+| Catalogue consolidé | 235 | ✅ Curated |
+| JADES fiable | 1,058 | ✅ z_phot qualité |
+| Spectro z>8 | 104 | ✅ Quality A |
+| HST Legacy | 84 | ✅ z_phot |
+| **TOTAL UNIQUE** | **~1,400** | ✅ |
 
-**Données exploitables après correction:**
-| Catalogue | N valide | Statut |
-|-----------|----------|--------|
-| JANUS-Z reference | ~220 | ✅ Utilisable |
-| Spectro z>8 | 110 | ✅ Utilisable |
-| Labbé+23 | 6 | ✅ Utilisable |
-| HST Legacy | 90 | ✅ z_phot only |
-| **JADES extraction** | **~0** | ❌ **INVALIDE** |
-| **Total exploitable** | **~420** | - |
+**Statistiques spectroscopiques:**
+- z_spec dans consolidé: 93 (39.6%)
+- z_spec complémentaire: 104
+- **Total z_spec: ~200 sources**
 
-**Verdict:** Phase 2 NÉCESSITE CORRECTIONS avant Phase 3
+**Verdict:** ✅ Phase 2 VALIDÉE - Phase 3 AUTORISÉE
 
-**Détails:** Voir RPT-AUDIT_DATA_QUALITY.md
+**Détails:** Voir RPT-AUDIT_FINAL_v4.md
 
 ---
 
