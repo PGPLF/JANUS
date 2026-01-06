@@ -11,7 +11,7 @@
 |-------|--------|------------|----------|------------|---------|
 | **Phase 1** | **COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT-EXECUTION_Phase1.md v4.0 |
 | **Phase 2** | **✅ COMPLÉTÉ** | 2026-01-05 | 2026-01-06 | **95%** | RPT-AUDIT_FINAL_v4.md |
-| **Phase 2.x** | **⚠️ INVALIDE** | 2026-01-05 | 2026-01-06 | **0%** | Données contaminées (66%) |
+| ~~Phase 2.x~~ | **⚠️ INVALIDE** | 2026-01-05 | 2026-01-06 | **0%** | ⛔ Données contaminées exclues |
 | **Phase 3.0.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
 | **Phase 3.1.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
 | **Phase 3.2** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT_PHASE32_JANUS.md |
@@ -19,6 +19,10 @@
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
 | Phase 7 | EN ATTENTE | - | - | - | - |
+
+> **⚠️ Note Phase 2.x INVALIDE:** Cette ligne marque l'exclusion de données contaminées (66% fictives).
+> Le catalogue `janus_z_reference_catalog.csv` contenait des sources inventées ("Eisenstein+2026(preview)", "Casey+2026(preview)").
+> **Ces données ont été purgées.** Toutes les analyses suivantes (3.0.a+) utilisent uniquement `highz_catalog_VERIFIED_v1.csv` (6,672 sources vérifiées).
 
 ### Audit Phase 1 (2026-01-06) - v4.0
 
@@ -106,6 +110,9 @@ L'audit a révélé que **66% des données du catalogue janus_z_reference_catalo
 2. ✅ Renommage échantillons spéciaux avec préfixe DONOTUSE_
 3. ✅ Création Plan 3.0.a/3.1.a pour reconstruction sur données vérifiées
 4. ✅ Exécution Phase 3.0.a et 3.1.a avec succès
+5. ✅ Nettoyage consolidated_catalog.csv (2026-01-06 23:11)
+   - Fichier contaminé renommé: CONTAMINATED_consolidated_catalog.csv
+   - Fichier propre créé: consolidated_catalog_CLEAN.csv (85 sources)
 
 **Sources VÉRIFIÉES utilisées:**
 | Source | N Input | N Final | Statut |
