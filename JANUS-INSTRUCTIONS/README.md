@@ -10,11 +10,13 @@ Ce dossier contient les instructions pour le projet JANUS.
 
 | Fichier | Description | Dernière MAJ |
 |---------|-------------|--------------|
-| **INS-Infrastructure.md** | Configuration machines, packages Python, requirements | 2026-01-05 |
+| **INS-Infrastructure.md** | Configuration machines, packages Python, requirements | 2026-01-06 |
 | **INS-Statistiques.md** | Calculs MCMC intensifs, checkpoints, optimisations | 2026-01-05 |
 | **INS-CLAUDE.md** | Bonnes pratiques assistant IA, accélération traitements | 2026-01-05 |
 | **INS-PDF_COMPILATION.md** | Compilation PDF avec LaTeX et Jupyter | 2026-01-05 |
 | **INS-FONTS_EQUATIONS.md** | Polices et affichage des équations | 2026-01-05 |
+| **INS-COSMOS2025.md** | Catalogue COSMOS-Web DR1 (~784k galaxies), extraction z>8 | 2026-01-06 |
+| **INS-COSMOS2025_HEBERGEMENT.md** | Plan hébergement local données COSMOS2025, 5 phases | 2026-01-06 |
 
 ---
 
@@ -63,6 +65,20 @@ Ce dossier contient les instructions pour le projet JANUS.
 - Polices mathématiques
 - Rendu LaTeX dans notebooks
 - Symboles cosmologiques
+
+### Données COSMOS2025 (INS-COSMOS2025.md)
+- Catalogue COSMOS-Web DR1 (~784,000 galaxies)
+- 6 extensions HDU (PHOT, LEPHARE, CIGALE, MORPH, SPEC-Z, FLAGS)
+- URLs de téléchargement
+- Script extraction z>8
+- Utilité pour Phase 3 (statistiques haute-z)
+
+### Hébergement COSMOS2025 (INS-COSMOS2025_HEBERGEMENT.md)
+- Plan 5 phases (~2h total)
+- Stratégie optimisée: extensions séparées (4-7 GB)
+- Scripts validation et extraction Python
+- Checklist complète 21 items
+- Troubleshooting et documentation
 
 ---
 
