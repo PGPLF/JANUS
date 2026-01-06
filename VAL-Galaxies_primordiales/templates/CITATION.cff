@@ -1,0 +1,54 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+authors:
+  - family-names: "[Your Last Name]"
+    given-names: "[Your First Name]"
+    orcid: "https://orcid.org/XXXX-XXXX-XXXX-XXXX"
+title: "COSMOS2025_JANUS: Complete dataset for JANUS bimetric cosmology validation"
+version: 1.0
+doi: 10.5281/zenodo.XXXXXXX
+date-released: 2026-01-06
+url: "https://github.com/PGPLF/JANUS"
+repository-code: "https://github.com/PGPLF/JANUS/tree/master/VAL-Galaxies_primordiales"
+keywords:
+  - cosmology
+  - JANUS model
+  - bimetric gravity
+  - JWST
+  - primordial galaxies
+  - COSMOS-Web
+  - high-redshift galaxies
+  - MCMC
+  - Bayesian inference
+  - dark matter
+  - dark energy
+license: CC-BY-4.0
+references:
+  - type: article
+    authors:
+      - family-names: "Shuntov"
+        given-names: "M."
+      - family-names: "Akins"
+        given-names: "H. B."
+      - family-names: "Paquereau"
+        given-names: "L."
+      - family-names: "Casey"
+        given-names: "C. M."
+      - family-names: "Ilbert"
+        given-names: "O."
+    title: "COSMOS2025: The COSMOS-Web galaxy catalog of photometry, morphology, and physical parameters from JWST, HST and ground-based imaging"
+    journal: "ApJ"
+    year: 2025
+    status: submitted
+  - type: article
+    authors:
+      - family-names: "Petit"
+        given-names: "J.-P."
+      - family-names: "d'Agostini"
+        given-names: "G."
+    title: "Cosmological bimetric model with interacting positive and negative masses and two different speeds of light"
+    journal: "Astrophysics and Space Science"
+    volume: 354
+    pages: "611-615"
+    year: 2014
+    doi: "10.1007/s10509-014-2106-5"
