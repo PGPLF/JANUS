@@ -16,7 +16,8 @@ Ce dossier contient les instructions pour le projet JANUS.
 | **INS-PDF_COMPILATION.md** | Compilation PDF avec LaTeX et Jupyter | 2026-01-05 |
 | **INS-FONTS_EQUATIONS.md** | Polices et affichage des équations | 2026-01-05 |
 | **INS-COSMOS2025.md** | Catalogue COSMOS-Web DR1 (~784k galaxies), extraction z>8 | 2026-01-06 |
-| **INS-COSMOS2025_HEBERGEMENT.md** | Plan hébergement local données COSMOS2025, 5 phases | 2026-01-06 |
+| **INS-COSMOS2025_HEBERGEMENT.md** | Plan hébergement complet COSMOS2025 + Zenodo (7 phases) | 2026-01-06 |
+| **INS-ZENODO.md** | Infrastructure professionnelle Zenodo, templates, API | 2026-01-06 |
 
 ---
 
@@ -74,11 +75,21 @@ Ce dossier contient les instructions pour le projet JANUS.
 - Utilité pour Phase 3 (statistiques haute-z)
 
 ### Hébergement COSMOS2025 (INS-COSMOS2025_HEBERGEMENT.md)
-- Plan 5 phases (~2h total)
-- Stratégie optimisée: extensions séparées (4-7 GB)
-- Scripts validation et extraction Python
-- Checklist complète 21 items
-- Troubleshooting et documentation
+- Plan 7 phases (~7-11h total)
+- Stratégie: téléchargement complet + upload Zenodo
+- ~100-130 GB données complètes
+- Scripts validation, extraction, upload Python
+- Checklist complète 49 items
+- Préparation archives < 50 GB
+
+### Infrastructure Zenodo (INS-ZENODO.md)
+- Hébergement professionnel datasets scientifiques
+- DOI citable pour publications
+- Structure COSMOS2025_JANUS complète
+- Templates: README.md, CITATION.cff, LICENSE
+- API Zenodo pour upload gros fichiers (> 10 GB)
+- Métadonnées FAIR et versioning
+- Workflow GitHub-Zenodo integration
 
 ---
 

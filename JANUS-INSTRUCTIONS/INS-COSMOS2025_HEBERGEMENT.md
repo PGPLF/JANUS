@@ -1,582 +1,902 @@
-# INS-COSMOS2025_HEBERGEMENT - Plan d'Hébergement Local COSMOS2025
+# INS-COSMOS2025_HEBERGEMENT - Plan Hébergement Complet COSMOS2025
 
-**Projet**: VAL-Galaxies_primordiales
+**Projet**: VAL-Galaxies_primordiales - Phase 3
 **Date**: 6 Janvier 2026
-**Objectif**: Héberger localement les données COSMOS-Web DR1 pour Phase 3
+**Objectif**: Téléchargement complet COSMOS2025 + Upload Zenodo professionnel
+**Référence**: INS-ZENODO.md pour infrastructure Zenodo
 
 ---
 
 ## Vue d'Ensemble
 
-### Stratégie d'Hébergement
+### Stratégie d'Hébergement Complète
 
-**Approche recommandée**: **Hébergement sélectif** des extensions critiques
-- Télécharger uniquement fichiers nécessaires Phase 3
-- Optimiser espace disque (4-7 GB vs 50+ GB complet)
-- Extraire immédiatement échantillon z>8 (~5-10k galaxies)
-- Archiver extraction, supprimer catalogues bruts si besoin
+**Nouvelle approche**: **Téléchargement INTÉGRAL** + **Hébergement Zenodo professionnel**
+
+**Raisons du changement**:
+1. ✅ **Réutilisation future**: Données brutes pour d'autres études JANUS
+2. ✅ **Pérennité**: Stockage Zenodo avec DOI citable
+3. ✅ **Reconnaissance scientifique**: Publication dataset avec citation
+4. ✅ **Collaboration**: Données accessibles à la communauté
+5. ✅ **Versioning**: Zenodo gère les versions automatiquement
+
+### Workflow Complet
+
+```
+Local (pg-mac01)              →         Zenodo (pérenne)
+─────────────────                       ─────────────────
+1. Télécharger COSMOS2025 complet       4. Créer archives optimisées
+   (~100-130 GB)                           (< 50 GB chacune)
+
+2. Valider intégrité                    5. Upload vers Zenodo
+   (checksums, colonnes)                   (API ou interface)
+
+3. Extraction z>8 locale                6. Publication avec DOI
+   (pour Phase 3 immédiate)                (citable dans papier)
+```
+
+**Tailles estimées**:
+- Local temporaire: **100-130 GB** (peut être nettoyé après upload)
+- Zenodo permanent: **100-130 GB** (6-7 archives)
+- Extraction z>8: **~500 MB** (conservé local)
 
 ---
 
 ## Inventaire Complet COSMOS2025
 
-### Fichiers Disponibles et Priorités
+### Tous les Fichiers à Télécharger
 
-| Fichier | Taille | Priorité | Usage Phase 3 |
-|---------|--------|----------|---------------|
-| **Extensions Critiques** | | | |
-| `cosmos_web_lephare_v2.0.fits` | ~1-2 GB | **P1** | Redshifts z_phot essentiels |
-| `cosmos_web_cigale_v2.0.fits` | ~1-2 GB | **P1** | Masses stellaires + SFR |
-| `cosmos_web_phot_v2.0.fits` | ~2-3 GB | **P1** | Magnitudes UV (LF) |
-| **Extensions Secondaires** | | | |
-| `cosmos_web_morph_v2.0.fits` | ~1 GB | **P2** | Morphologies (optionnel) |
-| `cosmos_web_specz_v2.0.fits` | ~100 MB | **P3** | Spectro (déjà JANUS-Z) |
-| `cosmos_web_flags_v2.0.fits` | ~100 MB | **P3** | Redondant (CHI2 suffit) |
-| **Master Complet** | | | |
-| `COSMOS-Web_master_v2.0.fits` | ~8-10 GB | ❌ | Redondant si extensions |
-| **Produits Supplémentaires** | | | |
-| Detection images (20 tiles) | ~36 GB | ❌ | Non nécessaire Phase 3 |
-| Segmentation maps (20 tiles) | ~160 MB | ❌ | Non nécessaire |
-| LePhare SEDs tar.gz | ~5 GB | ❌ | Seulement si SED détaillée |
-| LePhare PDFz pickle | ~500 MB | **P2** | PDF(z) si analyse incertitudes |
-| CIGALE SEDs tar.gz | ~5 GB | ❌ | Seulement si SED détaillée |
+| Catégorie | Fichier | Taille | Usage |
+|-----------|---------|--------|-------|
+| **Catalogue Master** | | | |
+| | `COSMOS-Web_master_v2.0.fits` | ~8-10 GB | Toutes les 6 extensions ensemble |
+| **Extensions Séparées** | | | |
+| | `cosmos_web_phot_v2.0.fits` | ~2-3 GB | Photométrie multi-bandes |
+| | `cosmos_web_lephare_v2.0.fits` | ~1-2 GB | Photo-z + masses stellaires |
+| | `cosmos_web_cigale_v2.0.fits` | ~1-2 GB | SED fitting complet |
+| | `cosmos_web_morph_v2.0.fits` | ~1 GB | Morphologie (Sérsic, etc.) |
+| | `cosmos_web_specz_v2.0.fits` | ~100 MB | Redshifts spectroscopiques |
+| | `cosmos_web_flags_v2.0.fits` | ~100 MB | Flags qualité |
+| **Detection Images** | | | |
+| | 20 tiles (~1.8 GB chacune) | ~36 GB | Images détection NIRCam |
+| **Segmentation Maps** | | | |
+| | 20 tiles (~8 MB chacune) | ~160 MB | Cartes segmentation |
+| **LePhare Produits** | | | |
+| | `lephare_pdfz_v2.0.pkl` | ~5-10 GB | Distributions P(z) |
+| | `lephare_seds_v2.0.tar.gz` | ~20-40 GB | SEDs 784k sources |
+| **CIGALE Produits** | | | |
+| | `cigale_seds_v2.0.tar.gz` | ~20-40 GB | SEDs 784k sources |
 
-**Total recommandé**: 4-7 GB (extensions P1) vs 50+ GB (complet)
+**Total COSMOS2025 complet**: **~100-130 GB**
+
+### Décision Catalogue Master vs Extensions
+
+**Recommandation**: **Télécharger les DEUX** pour Zenodo
+- Master (~8-10 GB): Pour utilisateurs voulant tout d'un coup
+- Extensions séparées (~6-7 GB): Pour utilisateurs ciblés
+- Coût espace: +8-10 GB mais meilleure accessibilité
 
 ---
 
-## Plan d'Hébergement - 5 Phases
+## Plan d'Implémentation - 7 Phases
 
-### Phase A: Préparation Infrastructure (15 min)
+### Phase 1: Préparation Infrastructure Locale (15 min)
 
-**Objectif**: Créer structure répertoires et vérifier espace disque
+**Objectif**: Créer structure complète + vérifier ressources
 
 **Actions**:
-1. Vérifier espace disque disponible
-2. Créer structure répertoires
-3. Documenter dans DATA_SOURCES.md
-
-**Commandes**:
 ```bash
-# 1. Vérifier espace (besoin ~10 GB disponible)
+# Vérifier espace disque (besoin 150 GB disponible: 130 GB données + 20 GB travail)
 df -h /Users/pg-mac01/JANUS/VAL-Galaxies_primordiales/data/
 
-# 2. Créer structure
+# Créer structure locale
 cd /Users/pg-mac01/JANUS/VAL-Galaxies_primordiales/
-mkdir -p data/jwst/raw/cosmos2025/
+mkdir -p data/jwst/raw/cosmos2025/{catalog,detection_images,segmentation_maps,lephare,cigale}
 mkdir -p data/jwst/processed/cosmos2025/
+mkdir -p data/zenodo_upload/COSMOS2025_JANUS/
 
-# 3. Vérifier structure
-tree data/jwst/ -L 3
+# Vérifier structure
+tree data/ -L 4
 ```
 
 **Validation**:
-- [ ] Espace disque >= 10 GB libre
-- [ ] Répertoires créés
-- [ ] Permissions lecture/écriture OK
+- [ ] Espace disque >= 150 GB libre
+- [ ] Structure répertoires créée
+- [ ] Permissions OK
 
 ---
 
-### Phase B: Téléchargement Extensions Prioritaires (30-60 min)
+### Phase 2: Téléchargement Complet COSMOS2025 (2-4 heures)
 
-**Objectif**: Télécharger 3 extensions critiques (LEPHARE, CIGALE, PHOT)
+**Objectif**: Télécharger TOUTES les données COSMOS2025
 
-**Ordre de téléchargement**:
-1. **LEPHARE** (P1 absolu) - redshifts z_phot
-2. **CIGALE** (P1 absolu) - masses + SFR
-3. **PHOT** (P1) - magnitudes UV
+**Ordre de téléchargement** (par priorité pour Phase 3):
 
-**Méthode A: wget (recommandé)**:
+#### 2.1 Catalogue Complet (30-60 min)
+
 ```bash
-cd data/jwst/raw/cosmos2025/
+cd data/jwst/raw/cosmos2025/catalog/
 
-# 1. LEPHARE (priorité absolue)
-wget https://cosmos2025.iap.fr/data/cosmos_web_lephare_v2.0.fits \
-     -O cosmos_web_lephare_v2.0.fits
+# Master catalog (toutes extensions)
+wget https://cosmos2025.iap.fr/data/COSMOS-Web_master_v2.0.fits
 
-# 2. CIGALE (priorité absolue)
-wget https://cosmos2025.iap.fr/data/cosmos_web_cigale_v2.0.fits \
-     -O cosmos_web_cigale_v2.0.fits
-
-# 3. PHOT (priorité haute)
-wget https://cosmos2025.iap.fr/data/cosmos_web_phot_v2.0.fits \
-     -O cosmos_web_phot_v2.0.fits
-
-# Vérifier téléchargements
-ls -lh *.fits
-md5sum *.fits > checksums.txt
+# Extensions séparées (pour flexibilité Zenodo)
+wget https://cosmos2025.iap.fr/data/cosmos_web_phot_v2.0.fits
+wget https://cosmos2025.iap.fr/data/cosmos_web_lephare_v2.0.fits
+wget https://cosmos2025.iap.fr/data/cosmos_web_cigale_v2.0.fits
+wget https://cosmos2025.iap.fr/data/cosmos_web_morph_v2.0.fits
+wget https://cosmos2025.iap.fr/data/cosmos_web_specz_v2.0.fits
+wget https://cosmos2025.iap.fr/data/cosmos_web_flags_v2.0.fits
 ```
-
-**Méthode B: curl (alternative)**:
-```bash
-curl -L https://cosmos2025.iap.fr/data/cosmos_web_lephare_v2.0.fits \
-     -o cosmos_web_lephare_v2.0.fits
-```
-
-**Méthode C: Via navigateur (si URLs invalides)**:
-- Aller sur https://cosmos2025.iap.fr/catalog_download.html
-- Télécharger manuellement les 3 fichiers
-- Déplacer dans `data/jwst/raw/cosmos2025/`
 
 **Validation**:
-- [ ] 3 fichiers FITS téléchargés
-- [ ] Tailles cohérentes (~4-7 GB total)
-- [ ] Checksums sauvegardés
-- [ ] Aucune erreur de téléchargement
+```bash
+# Vérifier tailles
+ls -lh data/jwst/raw/cosmos2025/catalog/
+```
+
+#### 2.2 Detection Images (1-2 heures)
+
+```bash
+cd data/jwst/raw/cosmos2025/detection_images/
+
+# Télécharger tarball complet ou tiles individuelles
+# Option A: Tarball (si disponible)
+wget https://cosmos2025.iap.fr/data/detection_images_all.tar.gz
+tar -xzf detection_images_all.tar.gz
+
+# Option B: Tiles individuelles (ajuster URLs selon site)
+for i in {01..20}; do
+  wget https://cosmos2025.iap.fr/data/detection_tile_${i}.fits
+done
+```
+
+#### 2.3 Segmentation Maps (5 min)
+
+```bash
+cd data/jwst/raw/cosmos2025/segmentation_maps/
+
+# Tarball ou tiles individuelles
+wget https://cosmos2025.iap.fr/data/segmentation_maps_all.tar.gz
+tar -xzf segmentation_maps_all.tar.gz
+```
+
+#### 2.4 LePhare Produits (1-2 heures)
+
+```bash
+cd data/jwst/raw/cosmos2025/lephare/
+
+# PDFz (distributions redshift)
+wget https://cosmos2025.iap.fr/data/lephare_pdfz_v2.0.pkl
+
+# SEDs (peut être très gros)
+wget https://cosmos2025.iap.fr/data/lephare_seds_v2.0.tar.gz
+# Ne PAS extraire (garder tar.gz pour Zenodo)
+```
+
+#### 2.5 CIGALE Produits (1-2 heures)
+
+```bash
+cd data/jwst/raw/cosmos2025/cigale/
+
+# SEDs CIGALE
+wget https://cosmos2025.iap.fr/data/cigale_seds_v2.0.tar.gz
+# Ne PAS extraire (garder tar.gz pour Zenodo)
+```
+
+**Validation Phase 2**:
+```bash
+# Vérifier tous les fichiers téléchargés
+find data/jwst/raw/cosmos2025/ -type f -exec ls -lh {} \;
+
+# Compter total
+du -sh data/jwst/raw/cosmos2025/
+# Attendu: ~100-130 GB
+```
+
+**Checklist**:
+- [ ] Master catalog téléchargé
+- [ ] 6 extensions séparées téléchargées
+- [ ] 20 detection images téléchargées
+- [ ] 20 segmentation maps téléchargées
+- [ ] LePhare PDFz téléchargé
+- [ ] LePhare SEDs tar.gz téléchargé
+- [ ] CIGALE SEDs tar.gz téléchargé
 
 ---
 
-### Phase C: Validation et Inspection (15 min)
+### Phase 3: Validation Intégrité (30 min)
 
-**Objectif**: Vérifier intégrité fichiers et structure données
+**Objectif**: Vérifier que tous les fichiers sont complets et utilisables
 
-**Script de validation**:
+**Script validation**: `scripts/validate_cosmos2025_complete.py`
+
 ```python
 """
-validate_cosmos2025_files.py - Validation téléchargements COSMOS2025
+Validation intégrité complète COSMOS2025
 """
-
 import os
 from astropy.io import fits
-from astropy.table import Table
+import pickle
 
-def validate_cosmos2025_downloads(data_dir='data/jwst/raw/cosmos2025/'):
-    """Valider fichiers téléchargés"""
+def validate_fits_file(filepath, expected_min_size_gb=0.1):
+    """Valider fichier FITS"""
+    if not os.path.exists(filepath):
+        return False, f"Fichier manquant: {filepath}"
 
-    files_expected = {
-        'cosmos_web_lephare_v2.0.fits': {
-            'min_size_gb': 0.8,
-            'max_size_gb': 2.5,
-            'required_columns': ['ID', 'Z_PHOT', 'LOG_MSTAR', 'CHI2_BEST']
-        },
-        'cosmos_web_cigale_v2.0.fits': {
-            'min_size_gb': 0.8,
-            'max_size_gb': 2.5,
-            'required_columns': ['ID', 'LOG_MSTAR', 'LOG_SFR', 'CHI2_RED']
-        },
-        'cosmos_web_phot_v2.0.fits': {
-            'min_size_gb': 1.5,
-            'max_size_gb': 3.5,
-            'required_columns': ['ID', 'RA', 'DEC', 'MAG_AUTO_F150W']
-        }
-    }
+    # Vérifier taille
+    size_gb = os.path.getsize(filepath) / (1024**3)
+    if size_gb < expected_min_size_gb:
+        return False, f"Fichier trop petit: {size_gb:.2f} GB < {expected_min_size_gb} GB"
+
+    # Vérifier que FITS est lisible
+    try:
+        with fits.open(filepath) as hdul:
+            n_sources = len(hdul[1].data)
+            if n_sources < 700000:  # Attendu: ~784k
+                return False, f"Trop peu de sources: {n_sources}"
+        return True, f"OK ({n_sources} sources, {size_gb:.2f} GB)"
+    except Exception as e:
+        return False, f"Erreur lecture: {e}"
+
+def validate_cosmos2025_download(base_dir='data/jwst/raw/cosmos2025/'):
+    """Validation complète"""
+    print("=" * 60)
+    print("VALIDATION COSMOS2025 TÉLÉCHARGEMENT COMPLET")
+    print("=" * 60)
 
     results = {}
 
-    for filename, specs in files_expected.items():
-        filepath = os.path.join(data_dir, filename)
+    # 1. Catalogue master
+    print("\n1. MASTER CATALOG")
+    master_path = os.path.join(base_dir, 'catalog/COSMOS-Web_master_v2.0.fits')
+    ok, msg = validate_fits_file(master_path, expected_min_size_gb=5.0)
+    results['master'] = ok
+    print(f"   Master: {'✓' if ok else '✗'} {msg}")
 
-        print(f"\n{'='*60}")
-        print(f"Validation: {filename}")
-        print(f"{'='*60}")
+    # 2. Extensions séparées
+    print("\n2. EXTENSIONS SÉPARÉES")
+    extensions = {
+        'phot': 2.0,
+        'lephare': 1.0,
+        'cigale': 1.0,
+        'morph': 0.5,
+        'specz': 0.05,
+        'flags': 0.05
+    }
 
-        # Vérifier existence
-        if not os.path.exists(filepath):
-            print(f"❌ ERREUR: Fichier manquant")
-            results[filename] = 'MISSING'
-            continue
+    for ext, min_size in extensions.items():
+        ext_path = os.path.join(base_dir, f'catalog/cosmos_web_{ext}_v2.0.fits')
+        ok, msg = validate_fits_file(ext_path, expected_min_size_gb=min_size)
+        results[f'ext_{ext}'] = ok
+        print(f"   {ext.upper()}: {'✓' if ok else '✗'} {msg}")
 
-        # Vérifier taille
-        size_gb = os.path.getsize(filepath) / (1024**3)
-        print(f"Taille: {size_gb:.2f} GB")
+    # 3. Detection images
+    print("\n3. DETECTION IMAGES")
+    det_dir = os.path.join(base_dir, 'detection_images/')
+    if os.path.exists(det_dir):
+        n_tiles = len([f for f in os.listdir(det_dir) if f.endswith('.fits')])
+        results['detection'] = (n_tiles == 20)
+        print(f"   Tiles: {'✓' if n_tiles == 20 else '✗'} {n_tiles}/20 trouvées")
+    else:
+        results['detection'] = False
+        print(f"   Tiles: ✗ Dossier manquant")
 
-        if size_gb < specs['min_size_gb']:
-            print(f"⚠️ ATTENTION: Taille trop petite (< {specs['min_size_gb']} GB)")
-            print(f"   Téléchargement probablement incomplet")
-            results[filename] = 'TOO_SMALL'
-            continue
+    # 4. Segmentation maps
+    print("\n4. SEGMENTATION MAPS")
+    seg_dir = os.path.join(base_dir, 'segmentation_maps/')
+    if os.path.exists(seg_dir):
+        n_segmaps = len([f for f in os.listdir(seg_dir) if f.endswith('.fits')])
+        results['segmentation'] = (n_segmaps == 20)
+        print(f"   Segmaps: {'✓' if n_segmaps == 20 else '✗'} {n_segmaps}/20 trouvées")
+    else:
+        results['segmentation'] = False
+        print(f"   Segmaps: ✗ Dossier manquant")
 
-        if size_gb > specs['max_size_gb']:
-            print(f"⚠️ ATTENTION: Taille trop grande (> {specs['max_size_gb']} GB)")
+    # 5. LePhare
+    print("\n5. LEPHARE PRODUITS")
+    lp_pdfz = os.path.join(base_dir, 'lephare/lephare_pdfz_v2.0.pkl')
+    lp_seds = os.path.join(base_dir, 'lephare/lephare_seds_v2.0.tar.gz')
 
-        # Ouvrir FITS et vérifier structure
-        try:
-            with fits.open(filepath) as hdul:
-                print(f"Extensions: {len(hdul)} HDU")
+    if os.path.exists(lp_pdfz):
+        size_gb = os.path.getsize(lp_pdfz) / (1024**3)
+        results['lp_pdfz'] = (size_gb > 0.5)
+        print(f"   PDFz: {'✓' if size_gb > 0.5 else '✗'} {size_gb:.2f} GB")
+    else:
+        results['lp_pdfz'] = False
+        print(f"   PDFz: ✗ Manquant")
 
-                # Lire première extension (données)
-                data = Table(hdul[1].data)
-                print(f"N sources: {len(data):,}")
-                print(f"N colonnes: {len(data.colnames)}")
+    if os.path.exists(lp_seds):
+        size_gb = os.path.getsize(lp_seds) / (1024**3)
+        results['lp_seds'] = (size_gb > 10.0)
+        print(f"   SEDs: {'✓' if size_gb > 10.0 else '✗'} {size_gb:.2f} GB")
+    else:
+        results['lp_seds'] = False
+        print(f"   SEDs: ✗ Manquant")
 
-                # Vérifier colonnes requises
-                missing_cols = []
-                for col in specs['required_columns']:
-                    if col not in data.colnames:
-                        missing_cols.append(col)
+    # 6. CIGALE
+    print("\n6. CIGALE PRODUITS")
+    cig_seds = os.path.join(base_dir, 'cigale/cigale_seds_v2.0.tar.gz')
 
-                if missing_cols:
-                    print(f"❌ ERREUR: Colonnes manquantes: {missing_cols}")
-                    results[filename] = 'INVALID_STRUCTURE'
-                else:
-                    print(f"✅ Structure valide")
-
-                    # Afficher aperçu colonnes
-                    print(f"\nColonnes disponibles (premiers 10):")
-                    for i, col in enumerate(data.colnames[:10]):
-                        print(f"   {i+1:2d}. {col}")
-                    if len(data.colnames) > 10:
-                        print(f"   ... et {len(data.colnames)-10} autres")
-
-                    results[filename] = 'OK'
-
-        except Exception as e:
-            print(f"❌ ERREUR lecture FITS: {e}")
-            results[filename] = 'READ_ERROR'
+    if os.path.exists(cig_seds):
+        size_gb = os.path.getsize(cig_seds) / (1024**3)
+        results['cig_seds'] = (size_gb > 10.0)
+        print(f"   SEDs: {'✓' if size_gb > 10.0 else '✗'} {size_gb:.2f} GB")
+    else:
+        results['cig_seds'] = False
+        print(f"   SEDs: ✗ Manquant")
 
     # Résumé
-    print(f"\n{'='*60}")
-    print("RÉSUMÉ VALIDATION")
-    print(f"{'='*60}")
+    print("\n" + "=" * 60)
+    n_ok = sum(results.values())
+    n_total = len(results)
+    pct = 100 * n_ok / n_total
+    print(f"RÉSULTAT: {n_ok}/{n_total} validations réussies ({pct:.1f}%)")
 
-    all_ok = all(status == 'OK' for status in results.values())
-
-    for filename, status in results.items():
-        icon = "✅" if status == "OK" else "❌"
-        print(f"{icon} {filename}: {status}")
-
-    if all_ok:
-        print(f"\n🎉 Tous les fichiers sont valides et prêts pour extraction !")
+    if n_ok == n_total:
+        print("✅ Téléchargement complet VALIDÉ")
         return True
     else:
-        print(f"\n⚠️ Certains fichiers nécessitent attention")
+        print("❌ Téléchargement INCOMPLET - voir détails ci-dessus")
         return False
 
 if __name__ == '__main__':
-    validate_cosmos2025_downloads()
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+    base = 'data/jwst/raw/cosmos2025/'
+    validate_cosmos2025_download(base)
 ```
 
 **Exécution**:
 ```bash
 cd /Users/pg-mac01/JANUS/VAL-Galaxies_primordiales/
-python scripts/validate_cosmos2025_files.py
+source /Users/pg-mac01/PythonProject/.venv/bin/activate
+python scripts/validate_cosmos2025_complete.py
 ```
 
-**Validation**:
-- [ ] Tous fichiers lisibles (FITS valides)
-- [ ] N sources ~ 784,000 dans chaque extension
-- [ ] Colonnes critiques présentes
-- [ ] Aucune corruption détectée
+**Validation Phase 3**:
+- [ ] Master catalog lisible (784k sources)
+- [ ] 6 extensions lisibles
+- [ ] 20 detection images présentes
+- [ ] 20 segmentation maps présentes
+- [ ] LePhare PDFz + SEDs présents
+- [ ] CIGALE SEDs présent
+- [ ] Taille totale ~100-130 GB
 
 ---
 
-### Phase D: Extraction Échantillon z>8 (30 min)
+### Phase 4: Extraction z>8 Locale (30 min)
 
-**Objectif**: Extraire ~5-10k galaxies z>8 depuis COSMOS2025
+**Objectif**: Extraire échantillon haute-z pour Phase 3 immédiate
 
-**Script d'extraction**:
+**Script**: `scripts/extract_cosmos2025_highz.py` (déjà dans INS-COSMOS2025.md)
+
 ```bash
 cd /Users/pg-mac01/JANUS/VAL-Galaxies_primordiales/
+source /Users/pg-mac01/PythonProject/.venv/bin/activate
 
-# Créer script extract_cosmos2025_highz.py (voir INS-COSMOS2025.md)
-
-# Exécuter extraction
+# Extraction z>8 depuis master catalog
 python scripts/extract_cosmos2025_highz.py \
-    --lephare data/jwst/raw/cosmos2025/cosmos_web_lephare_v2.0.fits \
-    --cigale data/jwst/raw/cosmos2025/cosmos_web_cigale_v2.0.fits \
-    --phot data/jwst/raw/cosmos2025/cosmos_web_phot_v2.0.fits \
-    --zmin 8.0 \
-    --zmax 15.0 \
-    --output data/jwst/processed/cosmos2025/
+  --catalog data/jwst/raw/cosmos2025/catalog/COSMOS-Web_master_v2.0.fits \
+  --zmin 8.0 \
+  --zmax 15.0 \
+  --output data/jwst/processed/cosmos2025/
 
-# Vérifier sortie
-ls -lh data/jwst/processed/cosmos2025/
-```
-
-**Sortie attendue**:
-- `cosmos2025_highz_z8.fits` (~50-100 MB)
-- `cosmos2025_highz_z8.csv` (~10-20 MB)
-- `cosmos2025_extraction_summary.txt`
-
-**Validation**:
-- [ ] Extraction réussie (pas d'erreur)
-- [ ] N sources z>8: ~5,000-10,000
-- [ ] Toutes colonnes présentes
-- [ ] z_phot min >= 8.0
-
----
-
-### Phase E: Archivage et Nettoyage (15 min)
-
-**Objectif**: Optimiser espace disque après extraction
-
-**Options**:
-
-**Option 1: Conservation complète** (recommandé si espace >= 20 GB)
-```bash
-# Garder catalogues bruts + extraction
-# Permet re-extractions futures avec paramètres différents
-# Espace: ~4-7 GB
-```
-
-**Option 2: Archivage sélectif** (si espace 10-20 GB)
-```bash
-# Compresser catalogues bruts
-cd data/jwst/raw/cosmos2025/
-tar -czf cosmos2025_raw_archives.tar.gz *.fits
-rm *.fits
-
-# Espace économisé: ~2-3 GB (compression FITS)
-```
-
-**Option 3: Suppression catalogues bruts** (si espace < 10 GB)
-```bash
-# ATTENTION: Seulement si extraction z>8 validée et suffisante
-
-# Garder seulement extraction
-rm data/jwst/raw/cosmos2025/*.fits
-
-# Documenter URLs téléchargement dans DATA_SOURCES.md
-# pour re-téléchargement futur si besoin
+# Résultat attendu: cosmos2025_highz_z8.fits (~5-10k galaxies, ~500 MB)
 ```
 
 **Validation**:
-- [ ] Choix option archivage fait
-- [ ] Espace disque optimisé
-- [ ] Extraction z>8 préservée
-- [ ] URLs re-téléchargement documentées
+- [ ] Fichier `cosmos2025_highz_z8.fits` créé
+- [ ] N sources 5000-10000 galaxies
+- [ ] z_phot range 8.0-15.0
+- [ ] Colonnes essentielles présentes (ID, RA, DEC, z_phot, log_mstar, log_sfr, mag_UV)
 
 ---
 
-## Documentation Requise
+### Phase 5: Préparation Archives Zenodo (1-2 heures)
 
-### Mise à Jour DATA_SOURCES.md
+**Objectif**: Créer archives optimisées < 50 GB pour upload Zenodo
 
-Ajouter section:
+**Structure cible** (voir INS-ZENODO.md):
+```
+data/zenodo_upload/COSMOS2025_JANUS/
+├── README.md
+├── CITATION.cff
+├── LICENSE
+├── 00_catalog/
+├── 01_detection_images/
+├── 02_segmentation_maps/
+├── 03_lephare/
+├── 04_cigale/
+├── 05_janus_analysis/
+└── scripts/
+```
 
+**Script préparation**: `scripts/prepare_zenodo_archives.sh`
+
+```bash
+#!/bin/bash
+# Préparation archives Zenodo COSMOS2025_JANUS
+
+BASE_RAW="data/jwst/raw/cosmos2025"
+BASE_PROCESSED="data/jwst/processed/cosmos2025"
+ZENODO_DIR="data/zenodo_upload/COSMOS2025_JANUS"
+
+echo "Préparation archives Zenodo..."
+
+# Créer structure
+mkdir -p $ZENODO_DIR/{00_catalog/extensions_separate,01_detection_images,02_segmentation_maps,03_lephare,04_cigale,05_janus_analysis/{mcmc_chains,jwst_highz_selection,comparative_fits},scripts}
+
+# Copier README et métadonnées (à créer manuellement)
+cp templates/ZENODO_README.md $ZENODO_DIR/README.md
+cp templates/CITATION.cff $ZENODO_DIR/CITATION.cff
+cp templates/LICENSE $ZENODO_DIR/LICENSE
+
+# 1. Catalogue (master + extensions)
+echo "Archive 1: Catalogue..."
+cp $BASE_RAW/catalog/COSMOS-Web_master_v2.0.fits $ZENODO_DIR/00_catalog/
+cp $BASE_RAW/catalog/cosmos_web_*.fits $ZENODO_DIR/00_catalog/extensions_separate/
+
+# 2. Detection images (split en 2 archives)
+echo "Archive 2-3: Detection images..."
+cd $BASE_RAW/detection_images/
+ls *.fits | head -10 | tar -czf $ZENODO_DIR/01_detection_images/detection_part1.tar.gz -T -
+ls *.fits | tail -10 | tar -czf $ZENODO_DIR/01_detection_images/detection_part2.tar.gz -T -
+cd -
+
+# 3. Segmentation maps
+echo "Archive 3: Segmentation..."
+cd $BASE_RAW/segmentation_maps/
+tar -czf $ZENODO_DIR/02_segmentation_maps/segmentation_all.tar.gz *.fits
+cd -
+
+# 4. LePhare
+echo "Archive 4: LePhare..."
+cp $BASE_RAW/lephare/lephare_pdfz_v2.0.pkl $ZENODO_DIR/03_lephare/
+cp $BASE_RAW/lephare/lephare_seds_v2.0.tar.gz $ZENODO_DIR/03_lephare/
+
+# 5. CIGALE
+echo "Archive 5: CIGALE..."
+cp $BASE_RAW/cigale/cigale_seds_v2.0.tar.gz $ZENODO_DIR/04_cigale/
+
+# 6. JANUS analysis
+echo "Archive 6: JANUS analysis..."
+cp $BASE_PROCESSED/cosmos2025_highz_z8.fits $ZENODO_DIR/05_janus_analysis/jwst_highz_selection/
+# MCMC chains à ajouter quand disponibles
+# cp results/mcmc/*.h5 $ZENODO_DIR/05_janus_analysis/mcmc_chains/
+
+# Scripts reproduction
+cp scripts/extract_cosmos2025_highz.py $ZENODO_DIR/scripts/
+cp scripts/validate_cosmos2025_complete.py $ZENODO_DIR/scripts/
+cp requirements.txt $ZENODO_DIR/scripts/
+cp environment.yml $ZENODO_DIR/scripts/
+
+echo "✓ Structure Zenodo préparée: $ZENODO_DIR"
+du -sh $ZENODO_DIR
+```
+
+**Exécution**:
+```bash
+chmod +x scripts/prepare_zenodo_archives.sh
+./scripts/prepare_zenodo_archives.sh
+```
+
+**Création archives finales** (< 50 GB chacune):
+
+```bash
+cd data/zenodo_upload/
+
+# Archive 1: Catalogue + segmentation (~8 GB)
+zip -r COSMOS2025_catalog_segmaps.zip \
+  COSMOS2025_JANUS/00_catalog/ \
+  COSMOS2025_JANUS/02_segmentation_maps/ \
+  COSMOS2025_JANUS/README.md \
+  COSMOS2025_JANUS/CITATION.cff \
+  COSMOS2025_JANUS/LICENSE
+
+# Archive 2: Detection part 1 (~18 GB)
+# Déjà tar.gz dans 01_detection_images/detection_part1.tar.gz
+
+# Archive 3: Detection part 2 (~18 GB)
+# Déjà tar.gz dans 01_detection_images/detection_part2.tar.gz
+
+# Archive 4: LePhare (~30-40 GB)
+# Déjà tar.gz pour SEDs, copier PDFz aussi
+cd COSMOS2025_JANUS/03_lephare/
+tar -czf COSMOS2025_lephare.tar.gz *.pkl *.tar.gz
+cd ../..
+
+# Archive 5: CIGALE (~30-40 GB)
+# Déjà tar.gz
+
+# Archive 6: JANUS analysis (~variable)
+tar -czf COSMOS2025_JANUS_analysis.tar.gz \
+  COSMOS2025_JANUS/05_janus_analysis/ \
+  COSMOS2025_JANUS/scripts/
+```
+
+**Vérification tailles**:
+```bash
+ls -lh *.zip *.tar.gz
+# Toutes archives doivent être < 50 GB
+```
+
+**Validation Phase 5**:
+- [ ] 6-7 archives créées
+- [ ] Toutes < 50 GB
+- [ ] README.md, CITATION.cff, LICENSE inclus
+- [ ] Structure conforme INS-ZENODO.md
+
+---
+
+### Phase 6: Upload Zenodo (2-4 heures)
+
+**Objectif**: Uploader toutes les archives vers Zenodo avec métadonnées
+
+**Prérequis**:
+- Compte Zenodo créé (https://zenodo.org)
+- ORCID ID obtenu (recommandé)
+- Personal Access Token généré
+
+**Méthode recommandée**: **API Zenodo** (pour gros fichiers)
+
+**Script upload**: `scripts/zenodo_upload.py`
+
+```python
+"""
+Upload COSMOS2025_JANUS vers Zenodo
+Voir INS-ZENODO.md pour détails complets
+"""
+import requests
+import os
+from tqdm import tqdm
+
+ACCESS_TOKEN = os.environ.get('ZENODO_TOKEN')  # Définir dans .bashrc
+BASE_URL = "https://zenodo.org/api"
+
+def create_deposition():
+    """Créer nouveau dépôt"""
+    metadata = {
+        "upload_type": "dataset",
+        "title": "COSMOS2025_JANUS: Complete dataset for JANUS bimetric cosmology validation",
+        "creators": [
+            {"name": "[Votre Nom]", "orcid": "[Votre ORCID]"}
+        ],
+        "description": "Complete COSMOS-Web DR1 catalog (~784k galaxies) and JANUS bimetric cosmology analysis for primordial galaxies validation.",
+        "access_right": "open",
+        "license": "CC-BY-4.0",
+        "keywords": ["cosmology", "JANUS model", "bimetric gravity", "JWST", "COSMOS-Web", "high-redshift galaxies", "MCMC"],
+        "related_identifiers": [
+            {"identifier": "https://cosmos2025.iap.fr/", "relation": "isSupplementTo"},
+            {"identifier": "https://github.com/PGPLF/JANUS", "relation": "isDocumentedBy"}
+        ]
+    }
+
+    r = requests.post(
+        f"{BASE_URL}/deposit/depositions",
+        headers={"Authorization": f"Bearer {ACCESS_TOKEN}"},
+        json={"metadata": metadata}
+    )
+    return r.json()
+
+def upload_large_file(bucket_url, filepath):
+    """Upload fichier avec barre de progression"""
+    filename = os.path.basename(filepath)
+    filesize = os.path.getsize(filepath)
+
+    print(f"\nUploading {filename} ({filesize / (1024**3):.2f} GB)...")
+
+    with open(filepath, 'rb') as f:
+        with tqdm(total=filesize, unit='B', unit_scale=True) as pbar:
+            def read_callback(chunk_size=8192):
+                while True:
+                    chunk = f.read(chunk_size)
+                    if not chunk:
+                        break
+                    pbar.update(len(chunk))
+                    yield chunk
+
+            r = requests.put(
+                f"{bucket_url}/{filename}",
+                headers={"Authorization": f"Bearer {ACCESS_TOKEN}"},
+                data=read_callback()
+            )
+
+    if r.status_code == 201:
+        print(f"✓ {filename} uploaded successfully")
+        return True
+    else:
+        print(f"✗ {filename} upload failed: {r.text}")
+        return False
+
+def main():
+    """Pipeline complet upload Zenodo"""
+
+    # 1. Créer dépôt
+    print("Creating Zenodo deposition...")
+    dep = create_deposition()
+    deposition_id = dep['id']
+    bucket_url = dep['links']['bucket']
+
+    print(f"✓ Deposition created: ID {deposition_id}")
+
+    # 2. Upload tous les fichiers
+    archives = [
+        "data/zenodo_upload/COSMOS2025_catalog_segmaps.zip",
+        "data/zenodo_upload/COSMOS2025_JANUS/01_detection_images/detection_part1.tar.gz",
+        "data/zenodo_upload/COSMOS2025_JANUS/01_detection_images/detection_part2.tar.gz",
+        "data/zenodo_upload/COSMOS2025_JANUS/03_lephare/COSMOS2025_lephare.tar.gz",
+        "data/zenodo_upload/COSMOS2025_JANUS/04_cigale/cigale_seds_v2.0.tar.gz",
+        "data/zenodo_upload/COSMOS2025_JANUS_analysis.tar.gz"
+    ]
+
+    success = []
+    for archive in archives:
+        if os.path.exists(archive):
+            if upload_large_file(bucket_url, archive):
+                success.append(archive)
+        else:
+            print(f"⚠ File not found: {archive}")
+
+    # 3. Publier (optionnel - commenter pour rester en brouillon)
+    # publish_url = f"{BASE_URL}/deposit/depositions/{deposition_id}/actions/publish"
+    # r = requests.post(publish_url, headers={"Authorization": f"Bearer {ACCESS_TOKEN}"})
+    # doi = r.json()['doi']
+    # print(f"\n✓ Published! DOI: {doi}")
+
+    print(f"\n✓ Upload complete: {len(success)}/{len(archives)} archives")
+    print(f"   Deposition ID: {deposition_id}")
+    print(f"   URL: https://zenodo.org/deposit/{deposition_id}")
+    print("\n⚠ Don't forget to PUBLISH on Zenodo web interface to get DOI!")
+
+if __name__ == '__main__':
+    if not ACCESS_TOKEN:
+        print("Error: Set ZENODO_TOKEN environment variable")
+        print("  export ZENODO_TOKEN='your_token_here'")
+        exit(1)
+
+    main()
+```
+
+**Exécution**:
+```bash
+# 1. Définir token Zenodo
+export ZENODO_TOKEN='your_personal_access_token'
+
+# 2. Lancer upload
+cd /Users/pg-mac01/JANUS/VAL-Galaxies_primordiales/
+source /Users/pg-mac01/PythonProject/.venv/bin/activate
+pip install requests tqdm
+
+python scripts/zenodo_upload.py
+```
+
+**Validation Phase 6**:
+- [ ] Deposition créée sur Zenodo
+- [ ] 6-7 archives uploadées
+- [ ] Métadonnées complètes
+- [ ] Brouillon sauvegardé (ne PAS publier immédiatement)
+
+---
+
+### Phase 7: Publication et Documentation (30 min)
+
+**Objectif**: Publier sur Zenodo + mettre à jour documentation projet
+
+#### 7.1 Publication Zenodo
+
+**Actions sur interface Zenodo**:
+1. Aller sur https://zenodo.org/deposit/[DEPOSITION_ID]
+2. Vérifier métadonnées
+3. Vérifier que README.md est visible
+4. Cliquer **"Publish"**
+5. **Copier le DOI généré** (ex: `10.5281/zenodo.1234567`)
+
+#### 7.2 Mise à Jour Documentation
+
+**Mettre à jour README.md Zenodo avec DOI final**:
+- Remplacer `[10.5281/zenodo.XXXXXXX]` par DOI réel
+- Mettre à jour date de release
+
+**Mettre à jour CITATION.cff avec DOI**:
+```yaml
+doi: 10.5281/zenodo.1234567  # DOI réel
+date-released: 2026-01-XX     # Date réelle
+```
+
+**Mettre à jour DATA_SOURCES.md local**:
 ```markdown
-### COSMOS2025 (COSMOS-Web DR1) - Hébergement Local
+### COSMOS2025 (COSMOS-Web DR1)
 
-**Date acquisition**: 6 Janvier 2026
-**Source originale**: https://cosmos2025.iap.fr/
-**Fichiers hébergés localement**:
+**Source**: Institut d'Astrophysique de Paris (IAP)
+**URL originale**: https://cosmos2025.iap.fr/
+**Zenodo DOI**: https://doi.org/10.5281/zenodo.1234567
+**Date d'accès**: 6-XX Janvier 2026
 
-**Catalogues bruts** (`data/jwst/raw/cosmos2025/`):
-- ✅ `cosmos_web_lephare_v2.0.fits` (1.8 GB) - Redshifts LePhare
-- ✅ `cosmos_web_cigale_v2.0.fits` (1.5 GB) - SED fitting CIGALE
-- ✅ `cosmos_web_phot_v2.0.fits` (2.3 GB) - Photométrie multi-bandes
-- **Total**: 5.6 GB
+**Téléchargement complet**: 100-130 GB
+- Catalogue master + 6 extensions
+- 20 detection images + segmentation maps
+- LePhare + CIGALE SEDs complets
 
-**Extraction z>8** (`data/jwst/processed/cosmos2025/`):
-- ✅ `cosmos2025_highz_z8.fits` (75 MB) - 6,847 galaxies z>=8
-- ✅ `cosmos2025_highz_z8.csv` (15 MB) - Format CSV
-- Date extraction: 6 Janvier 2026
-- Script: `scripts/extract_cosmos2025_highz.py`
-
-**Statistiques extraction z>8**:
-- N sources totales: 6,847
-- z range: 8.00 - 14.52
-- log(M*) range: 8.5 - 11.2 M☉
-- Filtres qualité: CHI2_LP < 10, CHI2_CIGALE < 5
-
-**Re-téléchargement** (si besoin):
-```bash
-wget https://cosmos2025.iap.fr/data/cosmos_web_lephare_v2.0.fits
-wget https://cosmos2025.iap.fr/data/cosmos_web_cigale_v2.0.fits
-wget https://cosmos2025.iap.fr/data/cosmos_web_phot_v2.0.fits
+**Hébergement**: Zenodo (pérenne, citable)
+**Extraction locale z>8**: `cosmos2025_highz_z8.fits` (~5-10k galaxies)
 ```
 
-**Citation**: Shuntov et al. (2025), COSMOS2025 DR1
-```
-
-### Mise à Jour CHANGELOG_DATA.md
-
+**Mettre à jour CHANGELOG_DATA.md**:
 ```markdown
-## [2026-01-06] - Phase 3 Semaine 1
+## [2026-01-XX] - Phase 3 Hébergement Complet
 
-### Hébergement COSMOS2025
+### Téléchargé
+- **COSMOS2025 complet**: ~100-130 GB
+  - Catalogue master COSMOS-Web_master_v2.0.fits (784k galaxies)
+  - 6 extensions séparées (PHOT, LEPHARE, CIGALE, MORPH, SPEC-Z, FLAGS)
+  - 20 detection images NIRCam (~36 GB)
+  - 20 segmentation maps (~160 MB)
+  - LePhare produits (PDFz + SEDs, ~30-50 GB)
+  - CIGALE produits (SEDs, ~30-40 GB)
 
-**Catalogues téléchargés**:
-- LEPHARE v2.0 (784,126 sources) - 1.8 GB
-- CIGALE v2.0 (784,126 sources) - 1.5 GB
-- PHOT v2.0 (784,126 sources) - 2.3 GB
-- **Total hébergé**: 5.6 GB
+### Hébergé sur Zenodo
+- **DOI**: https://doi.org/10.5281/zenodo.1234567
+- **Dataset**: COSMOS2025_JANUS v1.0
+- **6 archives** (~100-130 GB total)
+- **Citable** dans publications scientifiques
 
-**Extraction z>=8**:
-- **N sources**: 6,847 galaxies
-- Distribution redshift:
-  - 8 <= z < 10: 4,235 (62%)
-  - 10 <= z < 12: 1,890 (28%)
-  - 12 <= z < 15: 722 (10%)
-- **Masse stellaire moyenne**: log(M*) = 9.8 M☉
-- **SFR moyen**: log(SFR) = 1.2 M☉/yr
-
-**Validation**:
-- ✅ Tous fichiers FITS valides
-- ✅ Colonnes critiques présentes
-- ✅ Extraction z>8 cohérente
-- ✅ Compatibilité avec JANUS-Z (236 sources overlap)
-
-**Scripts créés**:
-- `scripts/validate_cosmos2025_files.py`
-- `scripts/extract_cosmos2025_highz.py` (optimisé extensions séparées)
+### Extraction locale
+- **cosmos2025_highz_z8.fits**: ~5-10k galaxies z>8
+- Prêt pour analyses Phase 3
 ```
+
+**Validation Phase 7**:
+- [ ] Dataset publié sur Zenodo
+- [ ] DOI obtenu et copié
+- [ ] README.md et CITATION.cff mis à jour avec DOI
+- [ ] DATA_SOURCES.md et CHANGELOG_DATA.md mis à jour
+- [ ] Announcement (optionnel): Twitter/X, blog, etc.
 
 ---
 
-## Checklist Complète Hébergement
+## Checklist Complète
 
-### Phase A: Préparation ☐
-- [ ] Espace disque >= 10 GB vérifié
+### Phase 1: Préparation (15 min)
+- [ ] Espace disque >= 150 GB vérifié
 - [ ] Structure répertoires créée
 - [ ] Permissions OK
 
-### Phase B: Téléchargement ☐
-- [ ] cosmos_web_lephare_v2.0.fits téléchargé
-- [ ] cosmos_web_cigale_v2.0.fits téléchargé
-- [ ] cosmos_web_phot_v2.0.fits téléchargé
-- [ ] Checksums MD5 sauvegardés
+### Phase 2: Téléchargement (2-4h)
+- [ ] Master catalog (~8-10 GB)
+- [ ] 6 extensions séparées (~6-7 GB)
+- [ ] 20 detection images (~36 GB)
+- [ ] 20 segmentation maps (~160 MB)
+- [ ] LePhare PDFz + SEDs (~30-50 GB)
+- [ ] CIGALE SEDs (~30-40 GB)
+- [ ] **Total: ~100-130 GB**
 
-### Phase C: Validation ☐
+### Phase 3: Validation (30 min)
 - [ ] Script validation exécuté
-- [ ] Tous fichiers FITS valides
-- [ ] N sources ~ 784k confirmé
-- [ ] Colonnes critiques présentes
+- [ ] Master catalog lisible (784k sources)
+- [ ] Extensions lisibles
+- [ ] Detection/segmentation complètes
+- [ ] LePhare/CIGALE complets
 
-### Phase D: Extraction ☐
-- [ ] Script extract_cosmos2025_highz.py créé
-- [ ] Extraction z>8 exécutée
-- [ ] N sources z>8: 5k-10k confirmé
-- [ ] Fichiers FITS + CSV générés
+### Phase 4: Extraction z>8 (30 min)
+- [ ] Script extraction exécuté
+- [ ] `cosmos2025_highz_z8.fits` créé (~5-10k sources)
+- [ ] Validation colonnes et redshifts
 
-### Phase E: Archivage ☐
-- [ ] Option archivage choisie
-- [ ] Espace disque optimisé
-- [ ] Extraction préservée
+### Phase 5: Archives Zenodo (1-2h)
+- [ ] Structure COSMOS2025_JANUS créée
+- [ ] README.md, CITATION.cff, LICENSE créés
+- [ ] 6-7 archives créées (< 50 GB chacune)
+- [ ] Vérification tailles
 
-### Documentation ☐
-- [ ] DATA_SOURCES.md mis à jour
-- [ ] CHANGELOG_DATA.md mis à jour
-- [ ] INS-COSMOS2025.md vérifié
-- [ ] README.md mention ajoutée (optionnel)
+### Phase 6: Upload Zenodo (2-4h)
+- [ ] Compte Zenodo créé
+- [ ] Access token obtenu
+- [ ] Deposition créée
+- [ ] 6-7 archives uploadées
+- [ ] Métadonnées complètes
+- [ ] Brouillon sauvegardé
 
----
-
-## Estimation Temps et Ressources
-
-### Durée Totale Estimée
-
-| Phase | Temps | Commentaire |
-|-------|-------|-------------|
-| A. Préparation | 15 min | Structure répertoires |
-| B. Téléchargement | 30-60 min | Dépend débit internet (5.6 GB) |
-| C. Validation | 15 min | Inspection FITS |
-| D. Extraction | 30 min | Traitement 784k sources |
-| E. Archivage | 15 min | Optimisation espace |
-| **Total** | **~2h** | **Peut être fait en 1 session** |
-
-### Ressources Requises
-
-| Ressource | Minimum | Recommandé | Optimal |
-|-----------|---------|------------|---------|
-| **Espace disque** | 10 GB | 15 GB | 20 GB |
-| **RAM** | 8 GB | 16 GB | 32 GB |
-| **Débit internet** | 10 Mbps | 50 Mbps | 100 Mbps |
-| **CPU** | 4 cores | 8 cores | 16 cores |
-
-**Machine pg-mac01**:
-- ✅ RAM: OK (configuration actuelle)
-- ✅ CPU: OK (Apple Silicon)
-- ⚠️ Espace: À vérifier (besoin 10-15 GB libres)
+### Phase 7: Publication (30 min)
+- [ ] Dataset publié sur Zenodo
+- [ ] DOI obtenu
+- [ ] README/CITATION.cff Zenodo mis à jour
+- [ ] DATA_SOURCES.md local mis à jour
+- [ ] CHANGELOG_DATA.md local mis à jour
 
 ---
 
-## Scripts Fournis
+## Résumé Temporel
 
-### 1. validate_cosmos2025_files.py
-**Emplacement**: `scripts/validate_cosmos2025_files.py`
-**Usage**: Validation téléchargements
-**Sortie**: Rapport validation + statistiques
+| Phase | Durée | Tâche Principale |
+|-------|-------|------------------|
+| Phase 1 | 15 min | Préparation infrastructure |
+| Phase 2 | 2-4h | Téléchargement complet (100-130 GB) |
+| Phase 3 | 30 min | Validation intégrité |
+| Phase 4 | 30 min | Extraction z>8 locale |
+| Phase 5 | 1-2h | Préparation archives Zenodo |
+| Phase 6 | 2-4h | Upload vers Zenodo |
+| Phase 7 | 30 min | Publication + documentation |
+| **TOTAL** | **~7-11h** | Infrastructure complète professionnelle |
 
-### 2. extract_cosmos2025_highz.py
-**Emplacement**: `scripts/extract_cosmos2025_highz.py`
-**Usage**: Extraction z>8 optimisée extensions séparées
-**Sortie**: FITS + CSV échantillon high-z
+---
 
-### 3. cosmos2025_statistics.py (optionnel)
-**Emplacement**: `scripts/cosmos2025_statistics.py`
-**Usage**: Statistiques détaillées extraction
-**Sortie**: Rapport markdown + figures
+## Ressources Requises
+
+### Espace Disque
+
+| Localisation | Usage | Taille |
+|--------------|-------|--------|
+| `data/jwst/raw/cosmos2025/` | Données brutes téléchargées | 100-130 GB |
+| `data/jwst/processed/cosmos2025/` | Extraction z>8 | ~500 MB |
+| `data/zenodo_upload/COSMOS2025_JANUS/` | Archives Zenodo (temporaire) | 100-130 GB |
+| **TOTAL temporaire** | (peut être nettoyé après upload) | **~200-260 GB** |
+| **Permanent local** | Extraction z>8 uniquement | **~500 MB** |
+| **Zenodo** | Hébergement pérenne | **100-130 GB** |
+
+### Bande Passante
+
+- **Download**: 100-130 GB (2-4h selon connexion)
+- **Upload Zenodo**: 100-130 GB (2-4h selon connexion)
+- **Total**: ~200-260 GB transfert
+
+### Compute
+
+- CPU: validation, archivage (1-2h)
+- RAM: < 16 GB (lecture FITS)
+- Python: numpy, astropy, requests, tqdm
+
+---
+
+## Nettoyage Post-Upload
+
+**Une fois upload Zenodo validé**, libérer espace disque:
+
+```bash
+# Option 1: Supprimer données brutes (tout sur Zenodo)
+rm -rf data/jwst/raw/cosmos2025/
+rm -rf data/zenodo_upload/
+# Économie: ~200-260 GB
+
+# Option 2: Garder uniquement master catalog
+rm -rf data/jwst/raw/cosmos2025/{detection_images,segmentation_maps,lephare,cigale}
+rm -rf data/zenodo_upload/
+# Économie: ~180-240 GB, garde ~10 GB catalogue
+
+# Option 3: Tout garder localement
+# Pas de nettoyage
+# Total: ~200-260 GB permanent
+```
+
+**Recommandation**: Option 1 (tout supprimer) car:
+- Données pérennes sur Zenodo
+- Extraction z>8 locale conservée (~500 MB)
+- Ré-téléchargement depuis Zenodo possible si besoin
 
 ---
 
 ## Troubleshooting
 
-### Problème: Téléchargement échoue
-
-**Symptôme**: wget/curl retourne 404 ou timeout
-
-**Solutions**:
-1. Vérifier URLs sur https://cosmos2025.iap.fr/catalog_download.html
-2. Télécharger manuellement via navigateur
-3. Contacter équipe COSMOS2025: cosmos2025@iap.fr
-4. Vérifier proxy/firewall
-
-### Problème: Fichier FITS corrompu
-
-**Symptôme**: Erreur lecture FITS
-
-**Solutions**:
-1. Vérifier MD5 checksum
-2. Re-télécharger fichier
-3. Vérifier espace disque (pas plein pendant téléchargement)
-
-### Problème: Extraction z>8 vide
-
-**Symptôme**: 0 sources extraites
-
-**Solutions**:
-1. Vérifier noms colonnes (README COSMOS2025)
-2. Ajuster seuils qualité (CHI2)
-3. Vérifier zmin/zmax
-
-### Problème: Manque d'espace disque
-
-**Symptôme**: Erreur écriture fichier
-
-**Solutions**:
-1. Nettoyer `/tmp/` et caches
-2. Archiver/supprimer JADES raw (1.4 GB)
-3. Utiliser disque externe
-4. Option archivage sélectif (Phase E)
+Voir **INS-ZENODO.md** section Troubleshooting pour:
+- Problèmes upload Zenodo
+- Fichiers corrompus
+- Archives trop volumineuses
+- DOI non généré
 
 ---
 
-## Prochaines Étapes Après Hébergement
+## Références
 
-### Phase 3 Immédiate
-
-1. **Comparaison échantillons**:
-   - COSMOS2025 z>8 (6-10k) vs JANUS-Z (175)
-   - Identifier overlap et sources uniques
-   - Choisir échantillon principal
-
-2. **Analyses statistiques**:
-   - Fonctions de luminosité UV(z)
-   - Fonctions de masse stellaire SMF(z)
-   - Distribution SFR(z)
-
-3. **Calculs prédictions JANUS vs ΛCDM**:
-   - Utiliser modules `src/cosmology/janus.py`
-   - Utiliser modules `src/cosmology/lcdm.py`
-
-### Documentation Finale
-
-- Mise à jour PHASE2_REPORT.md (mention COSMOS2025)
-- Création rapport comparaison échantillons
-- Figures statistiques (N(z), M*(z), SFR(z))
-
----
-
-## Contact et Support
-
-**COSMOS2025 Team**: cosmos2025@iap.fr
-**Documentation**: https://cosmos2025.iap.fr/catalog.html
-**Download page**: https://cosmos2025.iap.fr/catalog_download.html
+- **INS-COSMOS2025.md**: Description catalogue, script extraction z>8
+- **INS-ZENODO.md**: Infrastructure Zenodo complète, templates, API
+- **COSMOS2025 Official**: https://cosmos2025.iap.fr/
+- **Zenodo**: https://zenodo.org
 
 ---
 
 **Document**: INS-COSMOS2025_HEBERGEMENT.md
-**Version**: 1.0
+**Version**: 2.0 (Hébergement complet + Zenodo)
 **Date**: 6 Janvier 2026
-**Statut**: PRÊT POUR EXÉCUTION
+**Projet**: VAL-Galaxies_primordiales - Phase 3
+**Référence**: INS-ZENODO.md
