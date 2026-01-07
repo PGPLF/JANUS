@@ -10,11 +10,12 @@
 | Phase | Statut | Date Début | Date Fin | Conformité | Rapport |
 |-------|--------|------------|----------|------------|---------|
 | **Phase 1** | **COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT-EXECUTION_Phase1.md v4.0 |
-| **Phase 2** | **✅ COMPLÉTÉ** | 2026-01-05 | 2026-01-06 | **95%** | RPT-AUDIT_FINAL_v4.md |
+| **Phase 2** | **✅ COMPLÉTÉ** | 2026-01-05 | 2026-01-07 | **100%** | PHASE2_AUDIT_REPORT.md |
 | ~~Phase 2.x~~ | **⚠️ INVALIDE** | 2026-01-05 | 2026-01-06 | **0%** | ⛔ Données contaminées exclues |
 | **Phase 3.0.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
 | **Phase 3.1.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
-| **Phase 3.2** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT_PHASE32_JANUS.md |
+| **Phase 3.2** | **⚠️ À CORRIGER** | 2026-01-06 | 2026-01-07 | **70%** | PHASE3_AUDIT_REPORT.md |
+| **Phase 3.3** | **⚠️ À CORRIGER** | 2026-01-06 | 2026-01-07 | **80%** | PHASE3_AUDIT_REPORT.md |
 | Phase 4 | EN ATTENTE | - | - | - | - |
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
@@ -22,7 +23,15 @@
 
 > **⚠️ Note Phase 2.x INVALIDE:** Cette ligne marque l'exclusion de données contaminées (66% fictives).
 > Le catalogue `janus_z_reference_catalog.csv` contenait des sources inventées ("Eisenstein+2026(preview)", "Casey+2026(preview)").
-> **Ces données ont été purgées.** Toutes les analyses suivantes (3.0.a+) utilisent uniquement `highz_catalog_VERIFIED_v1.csv` (6,672 sources vérifiées).
+> **Ces données ont été purgées.** Toutes les analyses suivantes (3.0.a+) utilisent uniquement `highz_catalog_VERIFIED_v2.csv` (6,609 sources vérifiées).
+
+> **⚠️ Note Phase 3.2/3.3 CONVERGENCE (2026-01-07):**
+> L'audit MCMC a révélé des problèmes de convergence:
+> - **JANUS**: R-hat max = 1.34 (seuil: 1.1) - NON CONVERGÉ
+> - **LCDM**: R-hat max = 1.20 (seuil: 1.1) - MARGINALEMENT CONVERGÉ
+>
+> **Action**: Relancer MCMC avec 2000+ steps (JANUS) et 1000+ steps (LCDM).
+> Les résultats préliminaires (ΔBIC = -1831) sont **à confirmer** après correction.
 
 ### Audit Phase 1 (2026-01-06) - v4.0
 
