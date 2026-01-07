@@ -205,11 +205,15 @@ $$
 3. **Morphologie mature** : Disques et bulbes à z > 8 plus probables
 4. **Proto-amas** : Formation de structures plus avancée
 
-### 6.3 Observations Clés (JWST)
+### 6.3 Observations Clés (JWST) - MAJ Janvier 2026
 
-- **AC-2168 (z=12.15)** : "Impossible galaxy" - masse formée avant Big Bang en ΛCDM
-- **JADES-GS-z14-0 (z=14.32)** : Record spectroscopique, teste les limites
+- **MoM-z14 (z=14.44)** : Record spectroscopique actuel (Mai 2025), 280 Myr après Big Bang
+- **JADES-GS-z14-0 (z=14.32)** : Précédent record, confirmation Nature 2024
+- **JADES-GS-z14-1 (z=13.90)** : Compagnon spectro confirmé
+- **AC-2168 (z=6.63)** : Galaxie NIRCam-dark massive (log M*=10.57), arXiv:2511.08672
+- **ZF-UDS-7329 (z~3.2)** : Galaxie quiescente massive sans dark matter apparent
 - **Labbé+23 candidates** : 6 galaxies massives à z ~ 7-9
+- **COSMOS2025 massives** : 94 galaxies log(M*)>10 à z>8
 
 ---
 

@@ -168,14 +168,18 @@ $$
 
 ### 5.1 "Impossibly Early Galaxies"
 
-Plusieurs observations JWST violent les prédictions ΛCDM :
+Plusieurs observations JWST violent les prédictions ΛCDM (MAJ Janvier 2026):
 
-| Objet | Redshift | M_* (M_sun) | Tension |
-|-------|----------|-------------|---------|
-| Labbé+23 #1 | 7.4 | 10^10.9 | 2-3σ |
-| Labbé+23 #2 | 9.1 | 10^10.6 | 3-4σ |
-| AC-2168 | 12.15 | 10^10+ | >5σ |
-| JADES-GS-z14-0 | 14.32 | - | Limite temps |
+| Objet | Redshift | M_* (M_sun) | Tension | Référence |
+|-------|----------|-------------|---------|-----------|
+| **MoM-z14** | **14.44** | ~10^8.5 | **Record z_spec** | Naidu+2025 |
+| JADES-GS-z14-0 | 14.32 | ~10^8.7 | Limite temps | Nature 2024 |
+| JADES-GS-z14-1 | 13.90 | ~10^8.3 | Limite temps | Nature 2024 |
+| COSMOS2025-74827 | 14.95 | **10^11.9** | **>>5σ** | COSMOS-Web |
+| AC-2168 | 6.63 | 10^10.57 | 3-4σ | arXiv:2511.08672 |
+| Labbé+23 #1 | 7.4 | 10^10.9 | 2-3σ | Nature 2023 |
+| Labbé+23 #2 | 9.1 | 10^10.6 | 3-4σ | Nature 2023 |
+| ZF-UDS-7329 | 3.2 | 10^11.0 | Formation sans DM? | Nature 2024 |
 
 ### 5.2 Excès de Galaxies Brillantes
 

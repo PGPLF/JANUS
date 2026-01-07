@@ -124,6 +124,28 @@ L'audit a révélé que **66% des données du catalogue janus_z_reference_catalo
 
 **Catalogue final vérifié:** 6,672 sources uniques (214 z_spec, 6,458 z_phot)
 
+### Corrections Phase 2 v6.0 (2026-01-07)
+
+**Audit sources manquantes détecté:**
+- MoM-z14 (z=14.44, record spectro Mai 2025): MANQUANT
+- JADES-GS-z14-0/1 (z=14.32, 13.90): noms non standards
+- Valeurs z=21.99 et z>15 (placeholders): 66 entrées invalides
+
+**Actions correctives v6.0:**
+1. ✅ Ajout MoM-z14 (z=14.44) - Nouveau record spectroscopique
+2. ✅ Ajout JADES-GS-z14-0 (z=14.32) et JADES-GS-z14-1 (z=13.90)
+3. ✅ Ajout ZF-UDS-7329 (z=3.2, galaxie quiescente massive)
+4. ✅ Purge 66 entrées z invalides (>15 ou =21.99)
+5. ✅ Correction AC-2168: z=6.63 (pas z=12.15)
+6. ✅ Mise à jour JANUS_PREDICTIONS.md et LCDM_PREDICTIONS.md
+
+**Catalogue v2 (highz_catalog_VERIFIED_v2.csv):**
+- Total: 6,609 sources (vs 6,672 v1)
+- z_spec: 218 sources
+- z >= 14 spectro: MoM-z14, JADES-GS-z14-0
+- z >= 12: 79 sources
+- z >= 10: 400 sources
+
 ### Phase 3.0.a/3.1.a (2026-01-06) - COMPLÉTÉ
 
 **Objectif:** Reconstruire l'analyse sur bases de données 100% vérifiées
