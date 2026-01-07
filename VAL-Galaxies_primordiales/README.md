@@ -39,21 +39,49 @@ Infrastructure de calcul et modules Python opérationnels:
 | Module ΛCDM | ✅ | Cosmologie standard (Planck 2018, via astropy) |
 | Statistiques MCMC | ✅ | emcee, checkpoints HDF5, diagnostics convergence |
 | Plotting | ✅ | Figures publication-ready, corner plots |
-| Tests unitaires | ✅ | 42 tests (cosmology, statistics, plotting) |
-| Documentation | ✅ | SETUP.md, CHANGELOG.md, ce README |
+| Tests unitaires | ✅ | **41/41** tests passent (100%) |
+| Documentation | ✅ | JANUS_PREDICTIONS.md, LCDM_PREDICTIONS.md, notebooks |
 
 **Packages installés** (pg-mac01): numpy 2.3.5, scipy 1.16.3, matplotlib 3.10.8, astropy 7.2.0, emcee 3.1.6, corner 2.2.3, dynesty 3.0.0, pymc 5.27.0, arviz 0.23.0, numba 0.63.1, pytest 9.0.2
 
-### 📋 Phase 2 À venir
+### ✅ Phase 2 Complétée (6-7 Janvier 2026)
 
-**Acquisition et Préparation des Données**
+**Acquisition et Préparation des Données JWST**
 
-- Téléchargement catalogues JWST (JADES, CEERS, GLASS)
-- Compilation galaxies z > 8 avec masses stellaires, SFR, magnitudes UV
-- Nettoyage et sélection (qualité photométrique, biais)
-- Documentation provenance et qualité
+| Catalogue | N sources | Type | Statut |
+|-----------|-----------|------|--------|
+| **highz_catalog_VERIFIED_v2.csv** | 6,609 | Principal | ✅ |
+| exceptional_z12_plus.csv | 79 | z >= 12 | ✅ |
+| consolidated_catalog_CLEAN.csv | 85 | Curated | ✅ |
 
-### 🔮 Phases 3-7
+**Statistiques clés:**
+- **6,609 sources** uniques vérifiées (z > 5.5)
+- **218 spectroscopiques** (z_spec confirmés)
+- **MoM-z14** (z=14.44) : Record spectroscopique actuel
+- **JADES-GS-z14-0** (z=14.32) : Deuxième plus lointaine
+
+**Distribution par redshift:**
+| Plage | N sources |
+|-------|-----------|
+| z >= 14 | 20 |
+| z >= 12 | 79 |
+| z >= 10 | 400 |
+| z >= 8 | 1,388 |
+
+**Sources:** COSMOS-Web (4,173), JADES DR2/DR3/DR4 (2,434), Labbé+23, MoM-Survey
+
+### ✅ Phase 3 Complétée (6 Janvier 2026)
+
+**Analyse Statistique et Ajustement MCMC**
+
+Résultats préliminaires (Phase 3.2):
+- **ΔBIC = -1,831** : Strong evidence for JANUS
+- H₀ = 78.8 ± 1.2 km/s/Mpc (JANUS best-fit)
+- Ω₊ = 0.47 ± 0.02, Ω₋ = 0.03 ± 0.02
+
+### 📋 Phase 4 En cours
+
+**Comparaison Quantitative des Modèles**
 
 Voir [`PLAN.md`](PLAN.md) pour le plan complet en 7 phases.
 
@@ -241,4 +269,4 @@ Pour questions ou collaborations: voir issues GitHub https://github.com/PGPLF/JA
 
 ---
 
-**Status**: Phase 1 complétée ✅ | **Version**: 0.1.0-phase1 | **Date**: 5 Janvier 2026
+**Status**: Phases 1-3 complétées ✅ | Phase 4 en cours | **Version**: 0.3.0-phase3 | **Date**: 7 Janvier 2026
