@@ -14,8 +14,8 @@
 | ~~Phase 2.x~~ | **⚠️ INVALIDE** | 2026-01-05 | 2026-01-06 | **0%** | ⛔ Données contaminées exclues |
 | **Phase 3.0.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
 | **Phase 3.1.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
-| **Phase 3.2** | **⚠️ À CORRIGER** | 2026-01-06 | 2026-01-07 | **70%** | PHASE3_AUDIT_REPORT.md |
-| **Phase 3.3** | **⚠️ À CORRIGER** | 2026-01-06 | 2026-01-07 | **80%** | PHASE3_AUDIT_REPORT.md |
+| **Phase 3.2** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-07 | **100%** | RPT_PHASE3_FINAL.md |
+| **Phase 3.3** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-07 | **100%** | RPT_PHASE3_FINAL.md |
 | Phase 4 | EN ATTENTE | - | - | - | - |
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
@@ -25,13 +25,13 @@
 > Le catalogue `janus_z_reference_catalog.csv` contenait des sources inventées ("Eisenstein+2026(preview)", "Casey+2026(preview)").
 > **Ces données ont été purgées.** Toutes les analyses suivantes (3.0.a+) utilisent uniquement `highz_catalog_VERIFIED_v2.csv` (6,609 sources vérifiées).
 
-> **⚠️ Note Phase 3.2/3.3 CONVERGENCE (2026-01-07):**
-> L'audit MCMC a révélé des problèmes de convergence:
-> - **JANUS**: R-hat max = 1.34 (seuil: 1.1) - NON CONVERGÉ
-> - **LCDM**: R-hat max = 1.20 (seuil: 1.1) - MARGINALEMENT CONVERGÉ
+> **✅ Note Phase 3.2/3.3 CONVERGENCE CORRIGÉE (2026-01-07):**
+> Le MCMC v2 avec priors informatifs a résolu les problèmes de convergence:
+> - **JANUS**: R-hat max = 1.062 (seuil: 1.1) - ✅ CONVERGÉ (3000 steps, 64 walkers)
+> - **LCDM**: R-hat max = 1.073 (seuil: 1.1) - ✅ CONVERGÉ (2000 steps, 64 walkers)
 >
-> **Action**: Relancer MCMC avec 2000+ steps (JANUS) et 1000+ steps (LCDM).
-> Les résultats préliminaires (ΔBIC = -1831) sont **à confirmer** après correction.
+> **Résultats**: H0_JANUS = 75.1 ± 5.0 km/s/Mpc, H0_LCDM = 70.0 ± 4.9 km/s/Mpc
+> Voir RPT_PHASE3_FINAL.md pour les résultats complets.
 
 ### Audit Phase 1 (2026-01-06) - v4.0
 
