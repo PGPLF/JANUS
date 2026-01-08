@@ -194,11 +194,20 @@ class JANUSCosmology:
         # Integrate dt/dz from infinity (z_max) to z
         z_max = 1000.0  # Approximate "infinity"
 
-        integrand = lambda zp: 1.0 / ((1.0 + zp) * self.hubble_parameter(zp))
+        # Use scalar version of hubble_parameter for integration
+        def integrand(zp):
+            H = self.hubble_parameter(zp)
+            if hasattr(H, '__len__'):
+                H = float(H[0])
+            return 1.0 / ((1.0 + zp) * H)
+
         t_Mpc, _ = quad(integrand, z, z_max, epsrel=INTEGRATION_RTOL, epsabs=INTEGRATION_ATOL)
 
-        # Convert from Mpc to Gyr
-        t_Gyr = t_Mpc * MPC_TO_KM / (C_LIGHT * GYR_TO_S * 1e9)
+        # Convert from Mpc·s/km to Gyr
+        # t [Mpc·s/km] × (MPC_TO_KM km/Mpc) = t [s]
+        # t [Gyr] = t [s] / GYR_TO_S
+        # Hubble time check: 1/H0 = (1/70) Mpc·s/km × 3.09e19 km/Mpc / 3.16e16 s/Gyr ≈ 14 Gyr ✓
+        t_Gyr = t_Mpc * MPC_TO_KM / GYR_TO_S
 
         return t_Gyr
 

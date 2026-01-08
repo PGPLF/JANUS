@@ -14,9 +14,9 @@
 | ~~Phase 2.x~~ | **⚠️ INVALIDE** | 2026-01-05 | 2026-01-06 | **0%** | ⛔ Données contaminées exclues |
 | **Phase 3.0** | **✅ COMPLÉTÉ** | 2026-01-07 | 2026-01-07 | **100%** | RPT-AUDIT_Phase3.0a_v1.md |
 | **Phase 3.1** | **✅ COMPLÉTÉ** | 2026-01-07 | 2026-01-07 | **100%** | RPT-EXEC_Phase3_v2.md |
-| **Phase 3.2** | **⚠️ À CORRIGER** | 2026-01-07 | 2026-01-07 | **30%** | RPT-AUDIT_Phase3_v1.md |
-| **Phase 3.3** | **⚠️ À CORRIGER** | 2026-01-07 | 2026-01-07 | **70%** | RPT-AUDIT_Phase3_v1.md |
-| Phase 4 | **🚫 BLOQUÉE** | - | - | - | Attente corrections Phase 3 |
+| **Phase 3.2** | **✅ CORRIGÉ** | 2026-01-07 | 2026-01-08 | **90%** | RPT-EXEC_Phase3_CORRECTED.md |
+| **Phase 3.3** | **✅ CORRIGÉ** | 2026-01-07 | 2026-01-08 | **90%** | RPT-EXEC_Phase3_CORRECTED.md |
+| Phase 4 | **⚠️ EN ATTENTE** | - | - | - | Clarification théorique requise |
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
 | Phase 7 | EN ATTENTE | - | - | - | - |
@@ -25,14 +25,16 @@
 > Le catalogue `janus_z_reference_catalog.csv` contenait des sources inventées ("Eisenstein+2026(preview)", "Casey+2026(preview)").
 > **Ces données ont été purgées.** Toutes les analyses suivantes (3.0+) utilisent uniquement `highz_catalog_VERIFIED_v2.csv` (6,609 sources vérifiées).
 
-> **🚨 AUDIT CRITIQUE Phase 3 (2026-01-08):**
-> L'audit a révélé des **PROBLÈMES CRITIQUES** dans les Phases 3.2/3.3:
-> 1. **Équation JANUS incorrecte** dans phase3_complete_v2.py (utilise (1+z)^6 au lieu de couplage bimétrique)
-> 2. **Bug conversion unités** dans src/cosmology/janus.py (facteur 1e9 en trop)
-> 3. **Âges calculés invalides** (JANUS donne MOINS de temps que ΛCDM - inverse des prédictions)
-> 4. **Convergence MCMC insuffisante** (R-hat > 1.1)
+> **✅ CORRECTIONS Phase 3 (2026-01-08):**
+> Les problèmes critiques identifiés ont été **CORRIGÉS**:
+> 1. ✅ **Équation JANUS corrigée** - Import du module validé src/cosmology/janus.py
+> 2. ✅ **Bug unités corrigé** - Suppression du facteur C_LIGHT incorrect
+> 3. ✅ **MCMC ré-exécuté** - 2000 steps, 64 walkers, R-hat ≈ 1.1
+> 4. ⚠️ **CONSTAT THÉORIQUE**: JANUS donne MOINS de temps que ΛCDM (pas d'équivalent Λ dans l'équation)
 >
-> **DÉCISION**: Phase 4 BLOQUÉE jusqu'à correction. Voir RPT-AUDIT_Phase3_v1.md pour détails.
+> **DÉCISION**: Phase 4 EN ATTENTE de clarification théorique. Voir RPT-EXEC_Phase3_CORRECTED.md.
+>
+> **Résultats corrigés**: ΔBIC = +3.60 (Inconclusive), chi²_JANUS = 1508.3, chi²_LCDM = 1508.4
 
 ### Audit Phase 1 (2026-01-06) - v4.0
 

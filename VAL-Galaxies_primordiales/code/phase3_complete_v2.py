@@ -17,6 +17,7 @@ Date: 2026-01-07
 """
 
 import os
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -27,6 +28,10 @@ import json
 from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
+
+# Add src directory to path for validated cosmology modules
+BASE_DIR = Path('/Users/patrickguerin/Desktop/JANUS/VAL-Galaxies_primordiales')
+sys.path.insert(0, str(BASE_DIR / 'src'))
 
 # Check for optional dependencies
 try:
@@ -48,8 +53,11 @@ try:
 except ImportError:
     HAS_H5PY = False
 
-# Setup paths
-BASE_DIR = Path('/Users/patrickguerin/Desktop/JANUS/VAL-Galaxies_primordiales')
+# Import validated cosmology modules
+from cosmology.janus import JANUSCosmology
+from cosmology.lcdm import LCDMCosmology
+
+# Setup paths (BASE_DIR already defined above)
 DATA_DIR = BASE_DIR / 'data/jwst/processed'
 RESULTS_DIR = BASE_DIR / 'results'
 FIGURES_DIR = RESULTS_DIR / 'figures'
@@ -77,62 +85,9 @@ plt.rcParams.update({
 # =============================================================================
 # COSMOLOGICAL MODELS
 # =============================================================================
-
-class JANUSCosmology:
-    """JANUS bimetric cosmology model"""
-
-    def __init__(self, H0=70.0, Omega_plus=0.30, Omega_minus=0.05):
-        self.H0 = H0
-        self.Omega_plus = Omega_plus
-        self.Omega_minus = Omega_minus
-        self.Omega_Lambda = 1.0 - Omega_plus - Omega_minus
-
-    def hubble_parameter(self, z):
-        """H(z) in km/s/Mpc"""
-        return self.H0 * np.sqrt(
-            self.Omega_plus * (1 + z)**3 +
-            self.Omega_minus * (1 + z)**6 +
-            self.Omega_Lambda
-        )
-
-    def age_of_universe(self, z):
-        """Age of universe at redshift z in Gyr"""
-        H0_inv_Gyr = 978.0 / self.H0  # 1/H0 in Gyr
-        z_max = 1000.0
-
-        def integrand(zp):
-            H_ratio = self.hubble_parameter(zp) / self.H0
-            return 1.0 / ((1.0 + zp) * H_ratio)
-
-        result, _ = quad(integrand, z, z_max, epsrel=1e-6)
-        return result * H0_inv_Gyr
-
-
-class LCDMCosmology:
-    """Standard flat LCDM cosmology"""
-
-    def __init__(self, H0=67.4, Omega_m=0.315):
-        self.H0 = H0
-        self.Omega_m = Omega_m
-        self.Omega_Lambda = 1.0 - Omega_m
-
-    def hubble_parameter(self, z):
-        """H(z) in km/s/Mpc"""
-        return self.H0 * np.sqrt(
-            self.Omega_m * (1 + z)**3 + self.Omega_Lambda
-        )
-
-    def age_of_universe(self, z):
-        """Age of universe at redshift z in Gyr"""
-        H0_inv_Gyr = 978.0 / self.H0
-        z_max = 1000.0
-
-        def integrand(zp):
-            H_ratio = self.hubble_parameter(zp) / self.H0
-            return 1.0 / ((1.0 + zp) * H_ratio)
-
-        result, _ = quad(integrand, z, z_max, epsrel=1e-6)
-        return result * H0_inv_Gyr
+# Using validated modules from src/cosmology/janus.py and src/cosmology/lcdm.py
+# JANUSCosmology: Correct bimetric equation with coupling term
+# LCDMCosmology: Standard flat Lambda-CDM model
 
 
 # =============================================================================
