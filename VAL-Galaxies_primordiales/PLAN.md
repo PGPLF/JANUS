@@ -9,29 +9,30 @@
 
 | Phase | Statut | Date Début | Date Fin | Conformité | Rapport |
 |-------|--------|------------|----------|------------|---------|
-| **Phase 1** | **COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT-EXECUTION_Phase1.md v4.0 |
-| **Phase 2** | **✅ COMPLÉTÉ** | 2026-01-05 | 2026-01-07 | **100%** | PHASE2_AUDIT_REPORT.md |
+| **Phase 1** | **COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | RPT-EXEC_Phase1_v4.md |
+| **Phase 2** | **✅ COMPLÉTÉ** | 2026-01-05 | 2026-01-07 | **100%** | RPT-AUDIT_Phase2_FINAL.md |
 | ~~Phase 2.x~~ | **⚠️ INVALIDE** | 2026-01-05 | 2026-01-06 | **0%** | ⛔ Données contaminées exclues |
-| **Phase 3.0.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
-| **Phase 3.1.a** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-06 | **100%** | AUDIT_REPORT_3.0a.md |
-| **Phase 3.2** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-07 | **100%** | RPT_PHASE3_FINAL.md |
-| **Phase 3.3** | **✅ COMPLÉTÉ** | 2026-01-06 | 2026-01-07 | **100%** | RPT_PHASE3_FINAL.md |
-| Phase 4 | EN ATTENTE | - | - | - | - |
+| **Phase 3.0** | **✅ COMPLÉTÉ** | 2026-01-07 | 2026-01-07 | **100%** | RPT-AUDIT_Phase3.0a_v1.md |
+| **Phase 3.1** | **✅ COMPLÉTÉ** | 2026-01-07 | 2026-01-07 | **100%** | RPT-EXEC_Phase3_v2.md |
+| **Phase 3.2** | **⚠️ À CORRIGER** | 2026-01-07 | 2026-01-07 | **30%** | RPT-AUDIT_Phase3_v1.md |
+| **Phase 3.3** | **⚠️ À CORRIGER** | 2026-01-07 | 2026-01-07 | **70%** | RPT-AUDIT_Phase3_v1.md |
+| Phase 4 | **🚫 BLOQUÉE** | - | - | - | Attente corrections Phase 3 |
 | Phase 5 | EN ATTENTE | - | - | - | - |
 | Phase 6 | EN ATTENTE | - | - | - | - |
 | Phase 7 | EN ATTENTE | - | - | - | - |
 
 > **⚠️ Note Phase 2.x INVALIDE:** Cette ligne marque l'exclusion de données contaminées (66% fictives).
 > Le catalogue `janus_z_reference_catalog.csv` contenait des sources inventées ("Eisenstein+2026(preview)", "Casey+2026(preview)").
-> **Ces données ont été purgées.** Toutes les analyses suivantes (3.0.a+) utilisent uniquement `highz_catalog_VERIFIED_v2.csv` (6,609 sources vérifiées).
+> **Ces données ont été purgées.** Toutes les analyses suivantes (3.0+) utilisent uniquement `highz_catalog_VERIFIED_v2.csv` (6,609 sources vérifiées).
 
-> **✅ Note Phase 3.2/3.3 CONVERGENCE CORRIGÉE (2026-01-07):**
-> Le MCMC v2 avec priors informatifs a résolu les problèmes de convergence:
-> - **JANUS**: R-hat max = 1.062 (seuil: 1.1) - ✅ CONVERGÉ (3000 steps, 64 walkers)
-> - **LCDM**: R-hat max = 1.073 (seuil: 1.1) - ✅ CONVERGÉ (2000 steps, 64 walkers)
+> **🚨 AUDIT CRITIQUE Phase 3 (2026-01-08):**
+> L'audit a révélé des **PROBLÈMES CRITIQUES** dans les Phases 3.2/3.3:
+> 1. **Équation JANUS incorrecte** dans phase3_complete_v2.py (utilise (1+z)^6 au lieu de couplage bimétrique)
+> 2. **Bug conversion unités** dans src/cosmology/janus.py (facteur 1e9 en trop)
+> 3. **Âges calculés invalides** (JANUS donne MOINS de temps que ΛCDM - inverse des prédictions)
+> 4. **Convergence MCMC insuffisante** (R-hat > 1.1)
 >
-> **Résultats**: H0_JANUS = 75.1 ± 5.0 km/s/Mpc, H0_LCDM = 70.0 ± 4.9 km/s/Mpc
-> Voir RPT_PHASE3_FINAL.md pour les résultats complets.
+> **DÉCISION**: Phase 4 BLOQUÉE jusqu'à correction. Voir RPT-AUDIT_Phase3_v1.md pour détails.
 
 ### Audit Phase 1 (2026-01-06) - v4.0
 
